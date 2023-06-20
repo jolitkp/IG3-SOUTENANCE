@@ -1,0 +1,92 @@
+<!-- 
+<div class="container">
+ <div class="row justify-content-center mt-6">
+   <div class="col-md-10">
+    <div class="card">
+        <div class="card-header">Login here</div>
+        <div class="card-body">
+
+            <form #loginForm=ngForm (ngSubmit)="onSubmit()">
+              
+              <div class="alert alert-danger" [hidden]="!error">
+                {{ error }}
+              </div>
+                <div class="row mb-3">
+                  <label for="inputEmail3" class="col-sm-5 col-form-label">Email</label>
+                  <div class="col-sm-10">
+                    <input type="email" name="email" class="form-control" id="inputEmail3" [(ngModel)]="form.email" required>
+                  </div>
+                </div>
+                
+                <div class="row mb-3">
+                  <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+                  <div class="col-sm-10">
+                    <input type="password" name="password" class="form-control" id="inputPassword3" [(ngModel)]="form.password" required>
+                  </div>
+                </div>
+                <div class="form-group row">
+
+                  <div class="col-sm-12 offset-2">
+                    
+                    <div>
+                      <a class="col-sm-12 offset-7">Forgot password</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Se connecter</button>
+
+                  <div class="col-sm-12 offset-7">
+
+                    <a routerLink="/signup"> Créer un compte</a>
+                  
+                  </div>
+                    
+                  </div>
+
+                </div>
+              </form>
+        </div>
+    </div>
+  </div>
+</div>
+</div> -->
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card " style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+            <form #loginForm=ngForm (ngSubmit)="onSubmit()">
+            <div class="md-3 mt-md-2 pb-3">
+
+              <h2 class="fw-bold mb-2 text-uppercase">Connexion</h2>
+              <p class="text-white-50 mb-5">Veuillez entrer vos informations</p>
+
+              <div class="alert alert-danger" [hidden]="!error">
+                {{ error }}
+              </div>
+
+              <div class="form-outline form-white mb-4">
+                <label class="form-label" for="typeEmailX">Email</label>
+                <input type="email" name="email" id="typeEmailX"  class="form-control form-control-lg" [(ngModel)]="form.email" required />
+              </div>
+
+              <div class="form-outline form-white mb-4">
+                <label class="form-label" for="typePasswordX">Password</label>
+                <input type="password" name="password" id="typePasswordX" class="form-control form-control-lg" [(ngModel)]="form.password" required />
+              </div>
+
+              <p class=" mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
+
+              <button class="btn btn-primary btn-lg px-5" [disabled]="!loginForm.valid" type="submit">Se connecter</button>
+
+              
+            </div>
+
+              <p class="mb-0">Vous n'avez pas de compte? <a routerLink="/signup" class="text-white-50 fw-bold">Inscrivez-vous</a>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

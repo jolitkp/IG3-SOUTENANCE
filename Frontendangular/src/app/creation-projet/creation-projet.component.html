@@ -1,0 +1,24 @@
+<form [formGroup]="projetForm" (ngSubmit)="onSubmit()">
+    
+    <div class="form-group">
+      <label for="action">Action:</label>
+      <select formControlName="action" id="action">
+        <option value="creer">Créer un projet</option>
+        <option value="modifier">Modifier le nom d'un projet</option>
+        <option value="supprimer">Supprimer un projet</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+        <label for="nouveauNom">Nouveau nom du projet:</label>
+        <input type="text" formControlName="nouveauNom" id="nouveauNom">
+    </div>
+    
+    <div class="form-group">
+        <label for="projetId">Identifiant du projet à supprimer:</label>
+        <input type="text" formControlName="projetId" id="projetId">
+    </div>
+  
+    <button type="submit" class="submit-button">Soumettre</button>
+  </form>
+  

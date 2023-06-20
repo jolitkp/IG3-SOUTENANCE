@@ -1,0 +1,138 @@
+<!-- 
+<div class="mt-4 col-8 offset-2">
+    <div class="card">
+        <div class="card-header">Register here</div>
+        <div class="card-body">
+
+            <form #signupForm=ngForm  (ngSubmit)="onSubmit()">
+              
+              <div class="alert alert-danger" [hidden]="!error">
+                {{ error }}
+              </div>
+              
+              <div class="row mb-3">
+                <label for="inputName3" class="col-sm-2 col-form-label">Nom</label>
+                <div class="col-sm-10">
+                  <input type="text" name="nom" class="form-control" id="inputname3" [(ngModel)]="form.nom" required>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="inputPrenom3" class="col-sm-2 col-form-label">Prenom</label>
+                <div class="col-sm-10">
+                  <input type="text" name="prenom" class="form-control" id="inputprenom3" [(ngModel)]="form.prenom" required>
+                </div>
+              </div>
+
+                <div class="row mb-3">
+                  <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                  <div class="col-sm-10">
+                    <input type="email" name="email" class="form-control" id="inputEmail3" [(ngModel)]="form.email" required>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+                  <div class="col-sm-10">
+                    <input type="password" name="password" class="form-control" id="inputPassword3" [(ngModel)]="form.password" required>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Confirm_Password</label>
+                    <div class="col-sm-10">
+                      <input type="password" name="password_confirm" class="form-control" id="inputPassword3" [(ngModel)]="form.password_confirm" required>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="inputRole3" class="col-sm-2 col-form-label">Role</label>
+                    <div class="col-sm-10">
+                      <input type="text" name="role" class="form-control" id="inputRole3" [(ngModel)]="form.role" required>
+                    </div>
+                  </div>
+
+                <div class="form-group row">
+
+                  <div class="col-sm-12 offset-2">
+                    
+                    <button type="submit" class="btn btn-primary" [disabled]="!signupForm.valid">S'inscrire</button>
+
+                    <a routerLink="/login" class="btn btn-info float-right">Se connecter</a>
+
+                    
+                  </div>
+
+                </div>
+              </form>
+        </div>
+    </div>
+  </div> -->
+  <section class="vh-100 gradient-custom">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card " style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+              <form #signupForm=ngForm  (ngSubmit)="onSubmit()">
+              <div class="md-3 mt-md-2 pb-3">
+  
+                <h2 class="fw-bold mb-2 text-uppercase">Inscription</h2>
+                <p class="text-white-50 mb-5">Veuillez entrer vos informations</p>
+  
+          
+                <div class="form-outline form-white mb-4">
+                  <label class="form-label" for="typeNameX">Nom</label>
+                  <input type="text" name="nom" id="typeNameX" class="form-control form-control-lg" [(ngModel)]="form.nom" required />
+                </div>
+  
+                <div class="form-outline form-white mb-4">
+                  <label class="form-label" for="typePrenomX">Prenom</label>
+                  <input type="text" name="prenom" id="typePrenomX" class="form-control form-control-lg" [(ngModel)]="form.prenom" required  />
+                </div>
+
+
+                <div class="form-outline form-white mb-4">
+                  <label class="form-label" for="typeEmailX">Email</label>
+                  <input type="email" name="email" id="typeEmailX" class="form-control form-control-lg" [(ngModel)]="form.email" required />
+                </div>
+
+                
+                <div class="alert alert-danger" [hidden]="!error.email">
+                  {{ error.email }}
+                </div>
+
+  
+                <div class="form-outline form-white mb-4">
+                  <label class="form-label" for="typePasswordX">Password</label>
+                  <input type="password" name="password" id="typePasswordX" class="form-control form-control-lg" [(ngModel)]="form.password" required />
+                </div>
+
+                <div class="alert alert-danger" [hidden]="!error.password">
+                  {{ error.password }}
+                </div>
+
+
+                <div class="form-outline form-white mb-4">
+                  <label class="form-label" for="typePasswordX">ConfirmPassword</label>
+                  <input type="password" name="password_confirm" id="typePasswordX" class="form-control form-control-lg" [(ngModel)]="form.password_confirm" required />
+                </div>
+
+                <div class="alert alert-danger" [hidden]="!error.password_confirm">
+                  {{ error.password_confirm }}
+                </div>
+  
+                <button class="btn btn-primary btn-lg px-5" [disabled]="!signupForm.valid" type="submit">S'inscrire</button>
+  
+                
+              </div>
+  
+                <p class="mb-0">Vous avez déjà un compte? <a routerLink="/login" class="text-white-50 fw-bold">Connectez-vous</a>
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

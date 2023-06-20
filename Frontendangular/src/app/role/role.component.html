@@ -1,0 +1,18 @@
+<form [formGroup]="RoleForm" (ngSubmit)="createRole()">
+    <div >
+        <label for="roleName">Nom :</label>
+        <input type="text" id="roleName" formControlName="roleName" >
+    </div>
+
+    <div >
+        <label>Permissions :</label>
+        <div *ngFor="let permission of permissions">
+            <label>
+            <input type="checkbox" [formControlName]="'selectedPermissions'" [value]="permission" >
+            {{permission}}
+            </label>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Créer</button>
+</form>
