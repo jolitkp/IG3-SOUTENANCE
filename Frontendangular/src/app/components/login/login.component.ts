@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  
+
   public form = {
     email: null,
     password: null
@@ -21,23 +21,23 @@ export class LoginComponent {
 
   constructor( private http: HttpClient, private router:Router){}
 
- 
+
 
   onSubmit() {
      return this.http.post('http://127.0.0.1:8000/api/login-page', this.form).subscribe(
-     
+
       (res:any)=>{
         //console.log(res),
         localStorage.setItem('token', JSON.stringify(res))
 
         //redirect to dashboard
-        this.router.navigate(['/layout']);
+        this.router.navigate(['/welcome']);
       },
       error => this.handleError(error)
      );
   }
-  
- 
+
+
 
   handleError(error : any) {
     this.error = error.error.error;

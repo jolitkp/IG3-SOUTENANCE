@@ -5,11 +5,11 @@
       </div>
       <div *ngIf="errorMessage" class="alert alert-danger">
         {{ errorMessage }}
-      </div>      
-      
+      </div>
+
     <div >
         <label for="roleName">Nom :</label>
-        <input type="text" id="roleName" formControlName="roleName" >
+        <input type="text" class="form-control"  id="roleName" formControlName="roleName" >
     </div>
 
     <div >
@@ -22,5 +22,7 @@
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary">Créer</button>
+    <button type="submit" class="btn col-md-2" >Enregistrer</button>
 </form>
+
+
