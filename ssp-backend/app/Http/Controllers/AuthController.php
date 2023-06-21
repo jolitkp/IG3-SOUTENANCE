@@ -22,7 +22,7 @@ class AuthController extends Controller
     }*/
 
     
-      public function login(Request $request)
+    /*  public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
 
@@ -37,7 +37,7 @@ class AuthController extends Controller
             return response()->json([
                 'error' => 'Email and password doesn\'t exist',
             ], 401);
-        }}
+        }}*/
 
 
         /**
@@ -65,7 +65,7 @@ class AuthController extends Controller
         return $this->login($request);
     }*/
 
-    public function signup(Request $request)
+  /*  public function signup(Request $request)
     {
         $validatedData = $request->validate([
             'nom'=>'required|string|max:255',
@@ -92,9 +92,9 @@ class AuthController extends Controller
             $user,
             201
         );
-    }
+    }*/
 
-
+/*
     public function blockUser($id){
         $user = User::findOrFail($id);
         $user->blocked_at = now();
@@ -124,7 +124,7 @@ class AuthController extends Controller
         }
 
         return response()->json(['message' => 'Successfully logged out']);
-    }
+    }*/
 
 
 }
