@@ -7,6 +7,8 @@ import { RequestResetComponent } from './components/password/request-reset/reque
 import { ResponseResetComponent } from './components/password/response-reset/response-reset.component';
 import { LayoutComponent } from './layout/layout.component';
 import { RoleComponent } from './role/role.component';
+import { MainComponent } from './main/main.component';
+
 
 
 
@@ -19,6 +21,11 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent
     
+  },
+
+  {
+    path: 'main',
+    component: MainComponent
   },
  
   {

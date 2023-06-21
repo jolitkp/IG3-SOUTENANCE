@@ -1,4 +1,12 @@
 <form [formGroup]="RoleForm" (ngSubmit)="createRole()">
+
+    <div *ngIf="formErrors && formErrors.roleName" class="error-message">
+        {{ formErrors.roleName[0] }}
+      </div>
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>      
+      
     <div >
         <label for="roleName">Nom :</label>
         <input type="text" id="roleName" formControlName="roleName" >
