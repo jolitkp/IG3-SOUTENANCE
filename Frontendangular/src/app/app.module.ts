@@ -7,7 +7,6 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { LayoutComponent } from './layout/layout.component';
 import { RoleComponent } from './role/role.component';
 import { LoginComponent } from './components/login/login.component';
-import { ConnexionComponent } from './connexion/connexion.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import { RequestResetComponent } from './components/password/request-reset/request-reset.component';
@@ -39,7 +38,6 @@ registerLocaleData(en);
     LoginComponent,
     RoleComponent,
     LayoutComponent,
-    ConnexionComponent,
     SignupComponent,
     ProfilComponent,
     RequestResetComponent,
