@@ -11,13 +11,13 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  login(email: string, password: string): Observable<any> {
+  login(email: string, password: string) {
     const body = {
       email: email,
       password: password
     };
 
-    return this.http.post(`${this.apiUrl}/login`, body);
+    return this.http.post(`http://127.0.0.1:8000/api/oauth/token`, body);
   }
 
   logout(): Observable<any> {

@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+//import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-//import { AuthService } from '../../services/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -11,29 +11,38 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
+    email: string='';
+    password: string='';
   
-  public form = {
-    email: null,
-    password: null
-  };
 
   public error = null;
 
-  constructor( private http: HttpClient, private router:Router){}
+  constructor(private auth: AuthService, private router:Router){}
 
  
 
   onSubmit() {
-     return this.http.post('http://127.0.0.1:8000/api/login-page', this.form).subscribe(
+    this.auth.login(this.email, this.password)
+    .subscribe(
      
-      (res:any)=>{
+      (response:any)=>{
         //console.log(res),
-        localStorage.setItem('token', JSON.stringify(res))
-
+        const accessToken = response['access_token'];
+        localStorage.setItem('accessToken', accessToken); // Stockage du jeton d'accès dans localStorage
         //redirect to dashboard
         this.router.navigate(['/layout']);
       },
-      error => this.handleError(error)
+      error =>{
+         this.handleError(error)
+
+         if (error.status === 401) {
+          // Mauvaises informations d'identification
+          console.log('Invalid credentials');
+        } else {
+          // Autre erreur
+          console.log('An error occurred');
+        }
+      }
      );
   }
   
