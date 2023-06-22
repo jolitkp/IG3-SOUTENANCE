@@ -13,13 +13,13 @@ export class LoginComponent {
 
     email: string='';
     password: string='';
-  
+
 
   public error = null;
 
   constructor(private auth: AuthService, private router:Router){}
 
- 
+
 
   onSubmit() {
     this.auth.login(this.email, this.password)
@@ -29,8 +29,8 @@ export class LoginComponent {
         //console.log(res),
         const accessToken = response['access_token'];
         localStorage.setItem('accessToken', accessToken); // Stockage du jeton d'accès dans localStorage
-        //redirect to dashboard
-        this.router.navigate(['/layout']);
+       //redirect to dashboard
+       this.router.navigate(['/layout']);
       },
       error =>{
          this.handleError(error)
@@ -45,8 +45,8 @@ export class LoginComponent {
       }
      );
   }
-  
- 
+
+
 
   handleError(error : any) {
     this.error = error.error.error;

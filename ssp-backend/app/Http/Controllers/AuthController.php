@@ -22,7 +22,7 @@ class AuthController extends Controller
     }*/
 
     
-    /*  public function login(Request $request)
+      public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
 
@@ -37,7 +37,7 @@ class AuthController extends Controller
             return response()->json([
                 'error' => 'Email and password doesn\'t exist',
             ], 401);
-        }}*/
+        }}
 
 
         /**

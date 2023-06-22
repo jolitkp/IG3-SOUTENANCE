@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
-import { LayoutComponent } from './layout/layout.component';
 import { RoleComponent } from './role/role.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
@@ -37,7 +36,6 @@ registerLocaleData(en);
     ForgotPasswordComponent,
     LoginComponent,
     RoleComponent,
-    LayoutComponent,
     SignupComponent,
     ProfilComponent,
     RequestResetComponent,

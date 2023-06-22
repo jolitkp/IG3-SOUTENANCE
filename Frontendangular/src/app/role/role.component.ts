@@ -13,12 +13,15 @@ export class RoleComponent implements OnInit {
   RoleForm!: FormGroup;
   permissions!: string[];
 
+  formErrors: any;
+  errorMessage: string='';
+
   constructor(private role: RoleService, private http: HttpClient,  private auth: AuthService, private formBuilder: FormBuilder){}
 
   ngOnInit(){
     this.RoleForm = this.formBuilder.group({
-      roleName: [''],
-      selectedPermissions: [[]],
+      roleName: '',
+      selectedPermissions: [],
     });
     this.loadPermissions();
   }
@@ -56,7 +59,7 @@ export class RoleComponent implements OnInit {
         console.log('Role créé avec succès');
       },
       (error) => {
-        console.log('Une erreur est survenue');
+         this.errorMessage = error.error.errors.roleName;
       }
     );
    

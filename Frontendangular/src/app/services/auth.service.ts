@@ -17,7 +17,7 @@ export class AuthService {
       password: password
     };
 
-    return this.http.post(`http://127.0.0.1:8000/api/oauth/token`, body);
+    return this.http.post(`http://127.0.0.1:8000/api/login-page`, body);
   }
 
   logout(): Observable<any> {
