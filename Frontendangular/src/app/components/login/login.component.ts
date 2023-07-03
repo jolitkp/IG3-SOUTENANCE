@@ -28,7 +28,7 @@ export class LoginComponent {
     let data = {
       "grant_type":"password",
       "client_id":2,
-      "client_secret":"1bldDpV9wTwSjQrzyQNKJTV1oXLobVFgQIHYiXZR",
+      "client_secret":"HLWoEqY6nzCHQkrvZfEM1yTdnANODza1Ag4vbElp",
       "username":this.form.email,
       "password":this.form.password
     };
