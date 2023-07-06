@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.css';
-/*@import "~ng-zorro-antd/ng-zorro-antd.min.css";*/
+/* @import "~ng-zorro-antd/ng-zorro-antd.min.css"; */
+/* @import '~@ant-design/icons/style/entry.less'; */
 
 .ng-invalid:not(form){
     border-left: 5px solid red;
@@ -8,4 +9,13 @@
 
 .ng-valid:not(form){
     border-left: 5px solid green;
+}
+.ant-btn-green{
+    background-color: green;
+    color: white;
+    border-color: green;
+}
+.ant-btn-green:hover{
+    background-color: darkgreen;
+    border-color: darkgreen;
 }

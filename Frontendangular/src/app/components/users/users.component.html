@@ -1,1 +1,27 @@
-<p>users works!</p>
+<p>
+    <button  class="btn btn-primary " (click)="showCreatePage()">Ajouter un utilisateur </button>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Email</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <div *ngIf="isLoading">
+        Chargement en cours...
+    </div>
+    <div *ngIf="!isLoading">
+    <tbody>
+        <tr *ngFor="let user of users">
+            <th scope="row">{{ user.id }}</th>
+            <td>{{ user.nom }}</td>
+            <td>{{ user.prenom }}</td>
+            <td>{{ user.email }}</td>
+        </tr>
+    </tbody>
+    </div>
+</table>

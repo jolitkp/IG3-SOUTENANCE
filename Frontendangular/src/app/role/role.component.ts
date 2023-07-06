@@ -1,24 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { RoleService } from '../services/role.service';
 import { AuthService } from '../services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { NzIconService } from 'ng-zorro-antd/icon';
+import { EllipsisOutline } from '@ant-design/icons-angular/icons';
+import { PlusOutline } from '@ant-design/icons-angular/icons';
+
 
 @Component({
   selector: 'app-role',
   templateUrl: './role.component.html',
   styleUrls: ['./role.component.css']
 })
+
 export class RoleComponent implements OnInit {
+  roles: any[] = [];
+ public selectedRole: any;
+  
   RoleForm!: FormGroup;
   permissions!: string[];
 
   formErrors: any;
   errorMessage: string='';
 
-  constructor(private role: RoleService, private http: HttpClient,  private auth: AuthService, private formBuilder: FormBuilder){}
+  isModalVisible = false;
 
+  constructor( private iconRegistry: NzIconService ,private role: RoleService, private router: Router, private http: HttpClient,  private auth: AuthService, private formBuilder: FormBuilder){
+    this.iconRegistry.addIcon(EllipsisOutline);
+    this.iconRegistry.addIcon(PlusOutline);
+
+  }
+  
   ngOnInit(){
+   
     this.RoleForm = this.formBuilder.group({
       roleName: '',
       selectedPermissions: [],
@@ -54,26 +70,28 @@ export class RoleComponent implements OnInit {
         console.log('une erreur est survenue')
       }
     );*/
-    this.role.createrole(roleName, selectedPermissions).subscribe(
-      (response) => {
-        console.log('Role créé avec succès');
-      },
-      (error) => {
-         this.errorMessage = error.error.errors.roleName;
-      }
-    );
+          this.role.createrole(roleName, selectedPermissions).subscribe(
+            (response) => {
+              console.log('Role créé avec succès');
+            },
+            (error) => {
+              this.errorMessage = error.error.errors.roleName;
+            }
+          );
    
    // 
-    /*this.role.createRole(this.roleName, this.selectedPermissions).subscribe(
-      ()=>{
-            //     this.roles= response.roles;
-    //     this.permissions= response.permissions     
-       // console.log('Role crée')
-      },
-      (error)=>{
-        console.error('Error creating role', error);
+    // /*this.role.createRole(this.roleName, this.selectedPermissions).subscribe(
+    //   ()=>{
+    //         //     this.roles= response.roles;
+    // //     this.permissions= response.permissions     
+    //    // console.log('Role crée')
+    //   },
+    //   (error)=>{
+    //     console.error('Error creating role', error);
         
-      }
-    )*/
-  }
+    //   }
+    //  )*/
+  //}
+          }
+
 }

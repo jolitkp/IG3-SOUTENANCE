@@ -5,6 +5,9 @@ import {WelcomeComponent} from "../pages/welcome/welcome.component";
 import {RoleComponent} from "../role/role.component";
 import {SignupComponent} from "../components/signup/signup.component";
 import {ProfilComponent} from "../components/profil/profil.component";
+import { UsersComponent } from '../components/users/users.component';
+import { UserCreateComponent } from '../components/user-create/user-create.component';
+import { RoleCreateComponent } from '../role-create/role-create.component';
 
 
 
@@ -21,6 +24,18 @@ const routes: Routes = [
       {
         path: 'profil',
         component: ProfilComponent
+      },
+      {
+        path: 'users',
+        component: UsersComponent
+      },
+      {
+        path: 'users/create',
+        component: UserCreateComponent
+      },
+      {
+        path: 'role/create',
+        component: RoleCreateComponent
       },
 
     ]

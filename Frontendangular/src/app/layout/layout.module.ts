@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 //import { SidebarComponent } from './sidebar/sidebar.component';
-import { WelcomeComponent } from '../pages/welcome/welcome.component';
-
 import { NzAffixModule } from 'ng-zorro-antd/affix';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzAnchorModule } from 'ng-zorro-antd/anchor';
@@ -73,6 +71,9 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzStatisticModule } from 'ng-zorro-antd/statistic';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { EllipsisOutline } from '@ant-design/icons-angular/icons';
+
 
 
 @NgModule({
@@ -81,10 +82,12 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     NzLayoutModule,
     NzBreadCrumbModule,
     NzMenuModule,
-    NzIconModule,
+    NzIconModule.forChild([EllipsisOutline]),
     NzStatisticModule,
     NzCardModule,
     NzSpaceModule,
@@ -109,13 +112,11 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
     NzDescriptionsModule,
     NzDividerModule,
     NzDrawerModule,
+    NzDropDownModule,
     NzEmptyModule,
     NzFormModule,
     NzGridModule,
     NzI18nModule,
-    NzIconModule,
-    NzInputModule,
-    NzInputNumberModule,
     NzListModule,
     NzMentionModule,
     NzMenuModule,
@@ -128,10 +129,8 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
     NzPopconfirmModule,
     NzPopoverModule,
     NzProgressModule,
-    NzRadioModule,
     NzRateModule,
     NzResultModule,
-    NzSelectModule,
     NzSkeletonModule,
     NzSliderModule,
     NzSpinModule,
@@ -153,7 +152,7 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
     NzWaveModule,
     NzResizableModule,
     NzPipesModule,
-    CommonModule, NzInputModule, NzInputNumberModule, NzSelectModule, NzUploadModule, NzRadioModule, NzCheckboxModule,
+    NzInputModule, NzInputNumberModule, NzSelectModule, NzUploadModule, NzRadioModule, NzCheckboxModule,
     LayoutRoutingModule,
     NzLayoutModule,
     NzBreadCrumbModule,
@@ -163,8 +162,6 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
     NzCardModule,
     NzSpaceModule,
     NzGridModule,
-    NzTableModule,
-    NzFormModule,
     NzButtonModule,
   ]
 })

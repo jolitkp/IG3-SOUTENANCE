@@ -104,11 +104,13 @@ class AuthController extends Controller
     }
 
 
-    public function deleteUser($id){
-        $user = User::findOrFail($id);
+    public function deleteUser(Request $request,$id){
+        $user = User::find($id);
+        if(is_null($user)){
+            return response()->json(['message'=>'Utilisateur introuvable'],404);
+        }
         $user->delete();
-
-        return response()->json(['message'=>'Utilisateur supprimé avec succès']);
+        return response(null,204);
     }
 
 
@@ -126,6 +128,34 @@ class AuthController extends Controller
         return response()->json(['message' => 'Successfully logged out']);
     }
 
+    //liste des utilisateurs
+    public function getUser() {
+        return response()->json(User::all(),200);
+    }
+//par id
+    public function getUserbyId($id) {
+        $user = User::find($id);
+        if(is_null($user)){
+            return response()->json(['message'=> 'Utilisateur introuvable'],404);
+        }
+        return response()->json(User::find($id),200);
+    }
+
+//ajout d'utilisateur
+    public function addUser(Request $request) {
+        $user = User::create($request->all());
+        return response($user,201);
+    }
+
+    //mise a jour d'utilisateur
+    public function updateUser(Request $request, $id) {
+        $user = User::find($id);
+        if(is_null($user)){
+            return response()->json(['message'=>'Utilisateur introuvable'],404);
+        }
+        $user->update($request->all());
+        return response($user,200);
+    }
 
 }
 

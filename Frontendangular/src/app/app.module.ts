@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
@@ -22,10 +23,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { IconsProviderModule } from './icons-provider.module';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { CreationProjetComponent } from './creation-projet/creation-projet.component';
 import { MainModule } from './main/main.module';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+
 
 registerLocaleData(en);
 
@@ -52,10 +62,18 @@ registerLocaleData(en);
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule,
+    NzCheckboxModule,
+    NzInputModule ,
+    NzModalModule,
     ReactiveFormsModule,
     NzFormModule,
     NzButtonModule,
-    MainModule
+    MainModule,
+    NzTableModule,
+    NzIconModule,
+    NzDropDownModule,
+    NzPopoverModule,
+    NzSelectModule
   ],
   providers: [ AuthService, { provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

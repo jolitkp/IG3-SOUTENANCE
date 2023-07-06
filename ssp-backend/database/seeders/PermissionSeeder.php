@@ -16,7 +16,7 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-        $permission = [
+        $permissions = [
             ['titre'=> 'Tableau de bord', 'name'=> 'dashboard'],
             ['titre'=> 'Gestion des utilisateurs', 'name'=> 'user_manage'],
             ['titre'=> 'Gestion des roles', 'name'=> 'role_manage'],
@@ -26,14 +26,25 @@ class PermissionSeeder extends Seeder
 
         ];
 
-        foreach($permission as $permissionName){
-            Permission::create(['titre' => $permissionName['titre'],
-                                'name'=> $permissionName['name']]);
+        foreach($permissions as $permission){
+            Permission::create(['titre' => $permission['titre'],
+                                'name'=> $permission['name']]);
         }
 
 
-     //   $role = Role::create(['name' => 'admin']);
-      //  $role->givePermissionTo($permission);
+    //    $role = Role::create(['name' => 'admin']);
+    //     $role->givePermissionTo($permission);
+        $adminRole = Role::create(['name' => 'admin']);
+        $adminPermissions = Permission::pluck('name')->toArray();
+        $adminRole->syncPermissions($adminPermissions);
+
+
+        $chefRole = Role::create(['name' => 'chef']);
+
+        $chefPermissions = ['dashboard', 'project_manage', 'seance_manage', 'rapport'];
+        $permissions = Permission::whereIn('name', $chefPermissions)->get();
+
+        $chefRole->syncPermissions($permissions);
     }
 
 

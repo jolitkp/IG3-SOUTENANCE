@@ -53,4 +53,32 @@ class RoleController extends Controller
         $permissions = Permission::pluck('titre')->toArray();
         return response()->json($permissions);
     }
+
+    public function getRoles()
+    {
+        $roles = Role::all();
+
+        return response()->json($roles);
+    }
+
+    public function getRoleDetails($roleId){
+        $role = Role::findOrfail($roleId);
+        $permissions = $role->permissions;
+        
+        return response()->json([
+            'roleName' => $role->name,
+            'permissions' => $permissions->pluck('name')->toArray(),
+        ]);
+        // $role = Role::with('permissions')->find($roleId);
+
+        // if(!$role){
+        //     return response()->json(['message'=> 'Role non trouvé'], 404);
+        // }
+        // return response()->json($role);
+    }
+
+    public function destroy(Role $role){
+        $role->delete();
+        return response()->json(['message'=> 'Role supprimé avec succès']);
+    }
 }

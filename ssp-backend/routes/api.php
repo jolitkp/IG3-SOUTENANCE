@@ -34,5 +34,15 @@ Route::post("signup-page",[AuthController::class,"signup"]);
 
 Route::get("permission",[RoleController::class,"index"]);
 
-Route::post("users",[AuthController::class,"store"]);
+//Route::post("users",[AuthController::class,"store"]);
+Route::get("users",[AuthController::class,"getUser"]);
+Route::get("user/{id}",[AuthController::class,"getUserbyId"]);
+Route::post("addUser",[AuthController::class,"addUser"]);
+Route::put("updateUser/{id}",[AuthController::class,"updateUser"]);
+Route::delete("deleteUser/{id}",[AuthController::class,"deleteUser"]);
+
 Route::post("roles",[RoleController::class,"store"]);
+Route::get("role",[RoleController::class,"getRoles"]);
+Route::get("role/{roleId}",[RoleController::class,"getRoleDetails"]);
+Route::delete("role/{roleId}",[RoleController::class,"destroy"]);
+
