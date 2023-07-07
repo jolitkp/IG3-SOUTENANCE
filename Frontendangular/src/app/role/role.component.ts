@@ -32,31 +32,37 @@ export class RoleComponent implements OnInit {
     this.iconRegistry.addIcon(PlusOutline);
 
   }
-  
-  ngOnInit(){
+ 
+   ngOnInit(){
+     this.role.getRole().subscribe(roles => {
+       console.log(roles);
+       this.roles = roles;
+     });
+    }
+  // ngOnInit(){
    
-    this.RoleForm = this.formBuilder.group({
-      roleName: '',
-      selectedPermissions: [],
-    });
-    this.loadPermissions();
-  }
+  //   this.RoleForm = this.formBuilder.group({
+  //     roleName: '',
+  //     selectedPermissions: [],
+  //   });
+  //   this.loadPermissions();
+  // }
 
-  loadPermissions(){
-    this.auth.getUserInfo().subscribe(
-      (response: string[])=> {
-        this.permissions = response;
-      },
-      (error)=> {
-        console.log(error);
-      }
-    )
-  }
+  // loadPermissions(){
+  //   this.auth.getUserInfo().subscribe(
+  //     (response: string[])=> {
+  //       this.permissions = response;
+  //     },
+  //     (error)=> {
+  //       console.log(error);
+  //     }
+  //   )
+  // }
 
-  createRole(){
-    console.log(this.RoleForm.value);
-    const roleName = this.RoleForm.value.roleName;
-    const selectedPermissions=  this.RoleForm.value.selectedPermissions;
+  // createRole(){
+  //   console.log(this.RoleForm.value);
+  //   const roleName = this.RoleForm.value.roleName;
+  //   const selectedPermissions=  this.RoleForm.value.selectedPermissions;
    /* const roleData={
       roleName : roleName,
       selectedPermissions: selectedPermissions
@@ -70,14 +76,14 @@ export class RoleComponent implements OnInit {
         console.log('une erreur est survenue')
       }
     );*/
-          this.role.createrole(roleName, selectedPermissions).subscribe(
-            (response) => {
-              console.log('Role créé avec succès');
-            },
-            (error) => {
-              this.errorMessage = error.error.errors.roleName;
-            }
-          );
+          // this.role.createrole(roleName, selectedPermissions).subscribe(
+          //   (response) => {
+          //     console.log('Role créé avec succès');
+          //   },
+          //   (error) => {
+          //     this.errorMessage = error.error.errors.roleName;
+          //   }
+          // );
    
    // 
     // /*this.role.createRole(this.roleName, this.selectedPermissions).subscribe(
@@ -92,6 +98,49 @@ export class RoleComponent implements OnInit {
     //   }
     //  )*/
   //}
-          }
-
+           
+  detailRole(roleId: number): void{
+      this.role.getRoleDetail(roleId).subscribe(
+        (roleDetail: any) => {
+          console.log(roleDetail);
+            this.selectedRole = roleDetail;
+            console.log(this.selectedRole);
+            this.isModalVisible = true;
+            },
+            (error: any) => {
+              console.error('Erreur lors de la récupération des détails', error);
+                }
+              )
+  
+            }
+           
+         
+         handleCancel(): void{
+           this.isModalVisible = false;
+         }
+         handleOk(): void{
+           this.isModalVisible = false;
+         }
+         
+           editRole(){};
+           deleteRole(roleId: number){
+             const confirmed = confirm('Etes vous sur de vouloir supprimer cet role ?');
+             if(confirmed){
+               this.role.deleteRole(roleId).subscribe(
+                 () => {
+                   console.log('Role supprimé avec succès');
+                   this.roles = this.roles.filter(role => role.id !== roleId);
+                 },
+                 (error) => {
+                   console.error('Erreur lors de la suppression du role', error);
+                 }
+               );
+             }
+           };
+          
+         
+showCreate(){
+  this.router.navigate(['/role/create']);
+  }
 }
+

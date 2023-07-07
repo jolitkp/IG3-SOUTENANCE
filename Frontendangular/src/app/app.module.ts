@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
@@ -55,7 +54,7 @@ registerLocaleData(en);
   imports: [
     BrowserModule,
     //RoutingModule,
-    FormsModule,
+    FormsModule, ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -65,7 +64,6 @@ registerLocaleData(en);
     NzCheckboxModule,
     NzInputModule ,
     NzModalModule,
-    ReactiveFormsModule,
     NzFormModule,
     NzButtonModule,
     MainModule,

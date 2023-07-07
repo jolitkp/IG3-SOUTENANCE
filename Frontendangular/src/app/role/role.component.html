@@ -1,29 +1,50 @@
-<form [formGroup]="RoleForm" (ngSubmit)="createRole()">
-
-    <div *ngIf="formErrors && formErrors.roleName" class="error-message">
-        {{ formErrors.roleName[0] }}
+<p>
+    <button nz-button nzType="primary" class="add-button" (click)="showCreate()">
+      <span class="add-container">
+      <i nz-icon nzType="plus" class="add-icon"></i>
+    </span>
+     <span class="add-text"> Ajouter un role</span>
+    </button>
+    
+  </p>
+   <nz-table #rolesTable [nzData] ="roles" [nzPageSize] ="10" nzBordered nzSize ="small">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th class="actions">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let role of rolesTable.data">
+          <td>{{ role.id }}</td>
+          <td>{{ role.name }}</td>
+          <td>
+            <!-- <nz-dropdown-menu nzPlacement="bottomCenter" nzTrigger ="click"> -->
+              <a nz-dropdown nzPlacement="bottomRight">
+                <i nz-icon nzType="menu" nzTheme="outline" nz-dropdown [nzDropdownMenu]="menu"></i>
+              </a>
+              <nz-dropdown-menu #menu="nzDropdownMenu">
+              <ul nz-menu nzSelectable>
+                <li nz-menu-item (click)="detailRole(role.id)">Détails</li>
+                <li nz-menu-item (click)="editRole()">Modifier</li>
+                <li nz-menu-item (click)="deleteRole(role.id)">Supprimer</li>
+              </ul>
+            </nz-dropdown-menu>
+           </td>
+          </tr>
+      </tbody>
+    </nz-table>
+    
+    <nz-modal [(nzVisible)]="isModalVisible" [nzTitle]="'Details du role'" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" >
+      <div nz-modal-content>
+        <p>Nom du role : {{ selectedRole?.name }}</p>
+        <p>Permissions :</p>
+        <ul>
+          <li *ngFor="let permission of selectedRole?.permissions">{{ permission }}</li>
+        </ul>
       </div>
-      <div *ngIf="errorMessage" class="alert alert-danger">
-        {{ errorMessage }}
+      <div nz-modal-footer>
+        <button nz-button nzType="default" (click)="handleCancel()">Fermer</button>
       </div>
-
-    <div >
-        <label for="roleName">Nom :</label>
-        <input type="text" class="form-control"  id="roleName" formControlName="roleName" >
-    </div>
-
-    <div >
-        <label>Permissions :</label>
-        <div *ngFor="let permission of permissions">
-            <label>
-            <input type="checkbox" [formControlName]="'selectedPermissions'" [value]="permission" >
-            {{permission}}
-            </label>
-        </div>
-    </div>
-
-    <button type="submit" class="btn col-md-2" >Valider</button>
-</form>
-
-
-
+    </nz-modal>

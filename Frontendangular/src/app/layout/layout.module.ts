@@ -82,8 +82,7 @@ import { EllipsisOutline } from '@ant-design/icons-angular/icons';
   ],
   imports: [
     CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
+    FormsModule,ReactiveFormsModule,
     NzLayoutModule,
     NzBreadCrumbModule,
     NzMenuModule,
