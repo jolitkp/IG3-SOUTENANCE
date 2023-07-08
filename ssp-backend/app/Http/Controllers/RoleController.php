@@ -81,4 +81,30 @@ class RoleController extends Controller
         $role->delete();
         return response()->json(['message'=> 'Role supprimé avec succès']);
     }
+
+    public function deleteRole(Request $request,$id){
+        $role = Role::find($id);
+        if(is_null($role)){
+            return response()->json(['message'=>'Role introuvable'],404);
+        }
+        $role->delete();
+        return response(null,204);
+    }
+
+    public function getRolebyId($id) {
+        $role = Role::find($id);
+        if(is_null($role)){
+            return response()->json(['message'=> 'Utilisateur introuvable'],404);
+        }
+        return response()->json(Role::find($id),200);
+    }
+
+    public function updateRole(Request $request, $id) {
+        $role = Role::find($id);
+        if(is_null($role)){
+            return response()->json(['message'=>'Utilisateur introuvable'],404);
+        }
+        $role->update($request->all());
+        return response($role,200);
+    }
 }

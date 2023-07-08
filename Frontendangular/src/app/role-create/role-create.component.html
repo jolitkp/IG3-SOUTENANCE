@@ -1,4 +1,4 @@
-<p>
+<!-- <p>
     <button class="ant-btn-green" nz-button nzType="default" (click)="goBack()">
         <i nz-icon nzType="arrow-left"></i>Retour
     </button>
@@ -28,39 +28,38 @@
     </div>
 
     <button type="submit" class="btn btn-primary" >Valider</button>
-</form>
+</form> -->
 
 
-<!-- <p>
-  <button class="ant-btn-green" nz-button nzType="default" (click)="goBack()">
-    <i nz-icon nzType="arrow-left"></i>Retour
+<p>
+  <button class="btn btn-primary" (click)="goBack()">
+      <i class="bi bi-arrow-left"></i> Retour
   </button>
 </p>
 
-<form #roleForm="ngForm" (ngSubmit)="createRole()">
-
-  <div *ngIf="formErrors && formErrors.roleName" class="error-message">
-    {{ formErrors.roleName[0] }}
+<form [formGroup]="RoleForm" (ngSubmit)="createRole()" class="needs-validation" novalidate>
+  <div *ngIf="formErrors && formErrors.roleName" class="alert alert-danger">
+      {{ formErrors.roleName[0] }}
   </div>
   <div *ngIf="errorMessage" class="alert alert-danger">
-    {{ errorMessage }}
+      {{ errorMessage }}
   </div>
 
-  <div>
-    <label for="roleName">Nom :</label>
-    <input type="text" class="form-control" id="roleName" name="roleName" [(ngModel)]="RoleForm.roleName" required>
+  <div class="mb-3">
+      <label for="roleName" class="form-label">Nom :</label>
+      <input type="text" class="form-control" id="roleName" formControlName="roleName" required>
+      <div class="invalid-feedback">Le nom du rôle est requis.</div>
   </div>
 
-  <div>
-    <label>Permissions :</label>
-    <div *ngFor="let permission of permissions">
-      <label>
-        <input type="checkbox" [(ngModel)]="RoleForm.selectedPermissions" [ngValue]="permission" name="selectedPermissions">
-        {{ permission }}
-      </label>
-    </div>
+  <div class="mb-3">
+      <label class="form-label">Permissions :</label>
+      <div *ngFor="let permission of permissions">
+          <div class="form-check">
+              <input type="checkbox" class="form-check-input" [formControlName]="'selectedPermissions'" [value]="permission" />
+              <label class="form-check-label">{{ permission }}</label>
+          </div>
+      </div>
   </div>
 
   <button type="submit" class="btn btn-primary">Valider</button>
 </form>
- -->

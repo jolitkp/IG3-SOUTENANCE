@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { NzIconService } from 'ng-zorro-antd/icon';
 import { EllipsisOutline } from '@ant-design/icons-angular/icons';
 import { PlusOutline } from '@ant-design/icons-angular/icons';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class RoleComponent implements OnInit {
 
   isModalVisible = false;
 
-  constructor( private iconRegistry: NzIconService ,private role: RoleService, private router: Router, private http: HttpClient,  private auth: AuthService, private formBuilder: FormBuilder){
+  constructor( private modal: NzModalService ,private iconRegistry: NzIconService ,private role: RoleService, private router: Router, private http: HttpClient,  private auth: AuthService, private formBuilder: FormBuilder){
     this.iconRegistry.addIcon(EllipsisOutline);
     this.iconRegistry.addIcon(PlusOutline);
 
@@ -39,65 +40,6 @@ export class RoleComponent implements OnInit {
        this.roles = roles;
      });
     }
-  // ngOnInit(){
-   
-  //   this.RoleForm = this.formBuilder.group({
-  //     roleName: '',
-  //     selectedPermissions: [],
-  //   });
-  //   this.loadPermissions();
-  // }
-
-  // loadPermissions(){
-  //   this.auth.getUserInfo().subscribe(
-  //     (response: string[])=> {
-  //       this.permissions = response;
-  //     },
-  //     (error)=> {
-  //       console.log(error);
-  //     }
-  //   )
-  // }
-
-  // createRole(){
-  //   console.log(this.RoleForm.value);
-  //   const roleName = this.RoleForm.value.roleName;
-  //   const selectedPermissions=  this.RoleForm.value.selectedPermissions;
-   /* const roleData={
-      roleName : roleName,
-      selectedPermissions: selectedPermissions
-    };
-
-    this.http.post('http://localhost:8000/api/roles', roleData).subscribe(
-      (response)=>{
-        console.log('Role créé avec succès');
-      },
-      (error)=>{
-        console.log('une erreur est survenue')
-      }
-    );*/
-          // this.role.createrole(roleName, selectedPermissions).subscribe(
-          //   (response) => {
-          //     console.log('Role créé avec succès');
-          //   },
-          //   (error) => {
-          //     this.errorMessage = error.error.errors.roleName;
-          //   }
-          // );
-   
-   // 
-    // /*this.role.createRole(this.roleName, this.selectedPermissions).subscribe(
-    //   ()=>{
-    //         //     this.roles= response.roles;
-    // //     this.permissions= response.permissions     
-    //    // console.log('Role crée')
-    //   },
-    //   (error)=>{
-    //     console.error('Error creating role', error);
-        
-    //   }
-    //  )*/
-  //}
            
   detailRole(roleId: number): void{
       this.role.getRoleDetail(roleId).subscribe(
@@ -123,20 +65,36 @@ export class RoleComponent implements OnInit {
          }
          
            editRole(){};
-           deleteRole(roleId: number){
-             const confirmed = confirm('Etes vous sur de vouloir supprimer cet role ?');
-             if(confirmed){
-               this.role.deleteRole(roleId).subscribe(
-                 () => {
-                   console.log('Role supprimé avec succès');
-                   this.roles = this.roles.filter(role => role.id !== roleId);
-                 },
-                 (error) => {
-                   console.error('Erreur lors de la suppression du role', error);
-                 }
-               );
-             }
-           };
+           deleteRole(id: any){
+              this.modal.confirm({
+                nzTitle: 'Êtes-vous sûr de vouloir supprimer ce rôle?',
+                nzContent: 'Cette action est irréversible.',
+                nzOkText: 'Oui',
+                nzOnOk: () => {
+                  // Appeler la méthode de suppression du rôle du service RoleService
+                  this.role.deleteRole(id).subscribe(
+                    () => {
+                      console.log('Rôle supprimé avec succès');
+                      this.role.getRole().subscribe(res =>{
+                        console.log(res);
+                        this.roles = res;
+                      })
+                      // this.roles = this.roles.filter(role => role.id !== id);
+
+                      // Effectuer des actions supplémentaires après la suppression
+                    },
+                    (error) => {
+                      console.error('Erreur lors de la suppression du rôle', error);
+                      // Gérer les erreurs de suppression
+                    }
+                  );
+                },
+                nzCancelText: 'Non',
+                nzOnCancel: () => {
+                  console.log('Suppression annulée.');},
+              })
+            }
+           
           
          
 showCreate(){

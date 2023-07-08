@@ -24,8 +24,17 @@ export class RoleService {
     return this.http.get<any>(`http://127.0.0.1:8000/api/role/${roleId}`);
   }
 
-  deleteRole(roleId: number): Observable<any> {
-    return this.http.delete('http://127.0.0.1:8000/api/role/${roleId}');
+  deleteRole(id: any) {
+    return this.http.delete(`http://127.0.0.1:8000/api/deleteRole/`+id);
+  }
+
+ getRolebyId(id: any) {
+    return this.http.get(`http://127.0.0.1:8000/api/role/`+id);
+  }
+
+  updateRole(updatedRole: any): Observable<any>{
+    const url = 'http://127.0.0.1:8000/api/updateRole/' + updatedRole.id;
+        return this.http.put(url, updatedRole);
   }
 
 }

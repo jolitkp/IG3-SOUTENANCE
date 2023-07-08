@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 //import { SidebarComponent } from './sidebar/sidebar.component';
@@ -82,7 +81,6 @@ import { EllipsisOutline } from '@ant-design/icons-angular/icons';
   ],
   imports: [
     CommonModule,
-    FormsModule,ReactiveFormsModule,
     NzLayoutModule,
     NzBreadCrumbModule,
     NzMenuModule,
@@ -156,7 +154,6 @@ import { EllipsisOutline } from '@ant-design/icons-angular/icons';
     NzLayoutModule,
     NzBreadCrumbModule,
     NzMenuModule,
-    NzIconModule,
     NzStatisticModule,
     NzCardModule,
     NzSpaceModule,

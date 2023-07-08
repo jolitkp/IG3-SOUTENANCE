@@ -27,7 +27,7 @@
               <nz-dropdown-menu #menu="nzDropdownMenu">
               <ul nz-menu nzSelectable>
                 <li nz-menu-item (click)="detailRole(role.id)">Détails</li>
-                <li nz-menu-item (click)="editRole()">Modifier</li>
+                <li nz-menu-item [routerLink]="'edit/' + role.id" >Modifier</li>
                 <li nz-menu-item (click)="deleteRole(role.id)">Supprimer</li>
               </ul>
             </nz-dropdown-menu>
@@ -48,3 +48,4 @@
         <button nz-button nzType="default" (click)="handleCancel()">Fermer</button>
       </div>
     </nz-modal>
+

@@ -5,8 +5,6 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NzIconService } from 'ng-zorro-antd/icon';
-import { EllipsisOutline } from '@ant-design/icons-angular/icons';
-import { PlusOutline } from '@ant-design/icons-angular/icons';
 
 
 @Component({
@@ -28,8 +26,9 @@ constructor(private iconRegistry: NzIconService ,private role: RoleService, priv
  
 ngOnInit(){
     this.RoleForm = this.formBuilder.group({
-      roleName: new FormControl(['']),
-      selectedPermissions: new FormControl([[]]),
+      roleName: '',
+      selectedPermissions: [],
+        
     });
     this.loadPermissions();
   }
@@ -53,6 +52,7 @@ ngOnInit(){
     this.role.createrole(roleName, selectedPermissions).subscribe(
         (response) => {
           console.log('Role créé avec succès');
+          this.router.navigate(['/role']);
         },
         (error) => {
           this.errorMessage = error.error.errors.roleName;

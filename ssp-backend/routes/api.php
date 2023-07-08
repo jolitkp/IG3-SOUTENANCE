@@ -44,5 +44,6 @@ Route::delete("deleteUser/{id}",[AuthController::class,"deleteUser"]);
 Route::post("roles",[RoleController::class,"store"]);
 Route::get("role",[RoleController::class,"getRoles"]);
 Route::get("role/{roleId}",[RoleController::class,"getRoleDetails"]);
-Route::delete("role/{roleId}",[RoleController::class,"destroy"]);
-
+Route::delete("deleteRole/{id}",[RoleController::class,"deleteRole"]);
+Route::get("role/{id}",[RoleController::class,"getRolebyId"]);
+Route::put("updateRole/{id}",[RoleController::class,"updateRole"]);

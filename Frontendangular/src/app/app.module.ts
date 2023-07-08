@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { RoleComponent } from './role/role.component';
+import { RoleCreateComponent } from './role-create/role-create.component';
+import { RoleEditComponent } from './role-edit/role-edit.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { ProfilComponent } from './components/profil/profil.component';
@@ -45,6 +47,8 @@ registerLocaleData(en);
     ForgotPasswordComponent,
     LoginComponent,
     RoleComponent,
+    RoleCreateComponent,
+    RoleEditComponent,
     SignupComponent,
     ProfilComponent,
     RequestResetComponent,
@@ -54,7 +58,8 @@ registerLocaleData(en);
   imports: [
     BrowserModule,
     //RoutingModule,
-    FormsModule, ReactiveFormsModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,
