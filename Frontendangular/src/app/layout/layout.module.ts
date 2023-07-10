@@ -72,12 +72,13 @@ import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { EllipsisOutline } from '@ant-design/icons-angular/icons';
-
+import { ProjetCreationComponent } from '../projet-creation/projet-creation.component';
 
 
 @NgModule({
   declarations: [
     LayoutComponent,
+    ProjetCreationComponent,
   ],
   imports: [
     CommonModule,

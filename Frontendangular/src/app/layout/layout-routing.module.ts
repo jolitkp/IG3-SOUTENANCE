@@ -9,17 +9,28 @@ import { UsersComponent } from '../components/users/users.component';
 import { UserCreateComponent } from '../components/user-create/user-create.component';
 import { RoleCreateComponent } from '../role-create/role-create.component';
 import { RoleEditComponent } from '../role-edit/role-edit.component';
-
-
+import { ProjetCreationComponent} from'../projet-creation/projet-creation.component';
+import { FormulaireComponent } from '../formulaire/formulaire.component';
 const routes: Routes = [
   {
+  
     path: '',
     component: LayoutComponent,
     children: [
       { path: 'welcome', component: WelcomeComponent },
+      { path: 'ajouter', component: FormulaireComponent },
+
       {
         path: 'role',
         component: RoleComponent
+      },
+      // {
+      // path: 'formulaire',
+      // component: FormulaireComponent
+      // },
+      {
+        path: 'projet-creation',
+        component: ProjetCreationComponent
       },
       {
         path: 'profil',
