@@ -8,6 +8,8 @@ import { RoleComponent } from './role/role.component';
 import { RoleCreateComponent } from './role-create/role-create.component';
 import { RoleEditComponent } from './role-edit/role-edit.component';
 import { LoginComponent } from './components/login/login.component';
+import { UsersComponent } from './components/users/users.component'; 
+import { UserCreateComponent } from './components/user-create/user-create.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import { RequestResetComponent } from './components/password/request-reset/request-reset.component';
@@ -36,6 +38,8 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzCardModule } from 'ng-zorro-antd/card';
+
 
 
 registerLocaleData(en);
@@ -46,6 +50,8 @@ registerLocaleData(en);
     NavbarComponent,
     ForgotPasswordComponent,
     LoginComponent,
+    UsersComponent,
+    UserCreateComponent,
     RoleComponent,
     RoleCreateComponent,
     RoleEditComponent,
@@ -76,7 +82,8 @@ registerLocaleData(en);
     NzIconModule,
     NzDropDownModule,
     NzPopoverModule,
-    NzSelectModule
+    NzSelectModule,
+    NzCardModule
   ],
   providers: [ AuthService, { provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

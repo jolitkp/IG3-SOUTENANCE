@@ -1,4 +1,4 @@
-<p>
+<!-- <p>
     <button  class="btn btn-primary " (click)="showCreatePage()">Ajouter un utilisateur </button>
 </p>
 <table class="table">
@@ -24,4 +24,55 @@
         </tr>
     </tbody>
     </div>
-</table>
+</table> -->
+<p>
+    <button nz-button nzType="primary" class="add-button" (click)="showCreatePage()">
+      <span class="add-container">
+      <i nz-icon nzType="plus" class="add-icon"></i>
+    </span>
+     <span class="add-text"> Ajouter un utilisateur</span>
+    </button>
+    
+  </p>
+<nz-table nz-table #usersTable [nzData] ="users" [nzPageSize] ="10" nzBordered nzSize ="small">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of usersTable.data">
+        <td>{{ user.id }}</td>
+        <td>{{ user.nom }}</td>
+        <td>{{ user.prenom }}</td>
+        <td>{{ user.email }} </td>
+        <td>{{ user.role }}</td>
+        <td>
+            <!-- <nz-dropdown-menu nzPlacement="bottomCenter" nzTrigger ="click"> -->
+              <a nz-dropdown nzPlacement="bottomRight">
+                <i nz-icon nzType="menu" nzTheme="outline" nz-dropdown [nzDropdownMenu]="menu"></i>
+              </a>
+              <nz-dropdown-menu #menu="nzDropdownMenu">
+              <ul nz-menu nzSelectable>
+                <li nz-menu-item [routerLink]="" >Modifier</li>
+                <li nz-menu-item (click)="deleteUser(user.id)">Supprimer</li>
+                <ng-container *ngIf="user.isBlocked; else unblockMenu">
+                  <button  class="btn-yellow" (click)="unblockUser(user.id)">Débloquer</button>
+                </ng-container>
+                <ng-template #unblockMenu>
+                  <button  class="btn-yellow" (click)="blockUser(user.id)">Bloquer</button>
+                </ng-template>
+                </ul>
+            </nz-dropdown-menu>
+           </td>
+      </tr>
+    </tbody>
+  </nz-table>
+
+
+  
