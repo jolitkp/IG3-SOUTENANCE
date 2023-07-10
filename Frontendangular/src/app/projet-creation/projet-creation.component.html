@@ -1,1 +1,22 @@
-<p>projet-creation works!</p>
+<nz-row>
+    <nz-col nzSpan="24">
+      <button nz-button nzType="primary" (click)="ajouterProjet()" (click)="ouvrirFormulaire()" nzShape="round" nzSize="large" class="add-button">Ajouter un nouveau projet</button>
+    </nz-col>
+  </nz-row>
+
+<nz-table [nzData]="projets">
+    <thead>
+      <tr>
+        <th>N°</th>
+        <th>Nom</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let projet of projets">
+        <td>{{ projet.numero }}</td>
+        <td>{{ projet.nom }}</td>
+        <td>{{ projet.action }}</td>
+      </tr>
+    </tbody>
+  </nz-table>

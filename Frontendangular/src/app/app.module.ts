@@ -39,13 +39,12 @@ import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzCardModule } from 'ng-zorro-antd/card';
-
-
-
+import { FormulaireComponent} from './formulaire/formulaire.component';
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
+    FormulaireComponent,
     AppComponent,
     NavbarComponent,
     ForgotPasswordComponent,
@@ -77,7 +76,6 @@ registerLocaleData(en);
     NzModalModule,
     NzFormModule,
     NzButtonModule,
-    MainModule,
     NzTableModule,
     NzIconModule,
     NzDropDownModule,

@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RoleController;
 use App\Database\Seeders\PermissionSeeder;
+use App\Http\Controllers\ProjetController;
 
 
 /*
@@ -55,3 +56,9 @@ Route::put("updateRole/{id}",[RoleController::class,"updateRole"]);
 Route::get("role/{roleId}/name",[RoleController::class,"getRoleNameById"]);
 Route::post("assignerole",[RoleController::class,"assignRole"]);
 
+
+Route::get('/projets', [ProjetController::class, 'index']);
+Route::get('/projets/{projet}', [ProjetController::class, 'show']);
+Route::post('/projets', [ProjetController::class, 'store']);
+Route::put('/projets/{projet}', [ProjetController::class, 'update']);
+Route::delete('/projets/{projet}', [ProjetController::class, 'destroy']);
