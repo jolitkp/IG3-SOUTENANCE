@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Observable } from 'rxjs';
+import { Role } from '../role';
 
 
 @Injectable({
@@ -16,9 +17,17 @@ export class RoleService {
     return this.http.post('http://127.0.0.1:8000/api/roles', roleData);
   }
 
-  getRole(){
+  getRole() {
     return this.http.get<any[]>('http://127.0.0.1:8000/api/role');
   }
+  getRoles(): Observable<Role[]> {
+    return this.http.get<Role[]>('http://127.0.0.1:8000/api/role');
+  }
+
+  getRoleNameById(roleId: number): Observable<string> {
+  return this.http.get<string>(`http://127.0.0.1:8000/api/role/${roleId}/name`);
+}
+
 
   getRoleDetail(roleId: number): Observable<any> {
     return this.http.get<any>(`http://127.0.0.1:8000/api/role/${roleId}`);
@@ -33,6 +42,9 @@ export class RoleService {
   }
 
   updateRole(updatedRole: any): Observable<any>{
+    if (!updatedRole.id) {
+      throw new Error('ID du rôle non défini');
+    }
     const url = 'http://127.0.0.1:8000/api/updateRole/' + updatedRole.id;
         return this.http.put(url, updatedRole);
   }

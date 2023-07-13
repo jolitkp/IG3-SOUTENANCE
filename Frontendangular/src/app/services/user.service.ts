@@ -13,15 +13,33 @@ export class UserService {
     return this.http.post('http://127.0.0.1:8000/api/signup-page', user);
   }
 
-  blockUser(userId: number){
-    return this.http.put('http://127.0.0.1:8000/api/users/${userId}/block', {});
+  blockUser(id: any){
+    return this.http.patch(`http://127.0.0.1:8000/api/users/${id}/block`, {});
   }
 
-  deleteUser(userId: number){
-    return this.http.delete('http://127.0.0.1:8000/api/users/${userId}');
+  unblockUser(id: any) {
+    return this.http.patch(`http://127.0.0.1:8000/api/users/${id}/unblock`, {});
+  }
+
+  deleteUser(id: any){
+    return this.http.delete(`http://127.0.0.1:8000/api/deleteUser/`+id);
   }
 
   getUsers(): Observable<any[]>{
     return this.http.get<any[]>('http://127.0.0.1:8000/api/users');
   }
+
+  getUserRole(id: number) {
+    return this.http.get<any>(`http://127.0.0.1:8000/api/users/${id}/role`);
+  }
+
+  addUser(user: any): Observable<any> {
+    return this.http.post<any>('http://127.0.0.1:8000/api/addUser', user);
+  }
+
+  assignRole(userId: number, roleId: number ): Observable<any> {
+    const data = { userId, roleId }; // Données à envoyer dans la requête
+    return this.http.post<any>('http://127.0.0.1:8000/api/assignerole', data);
+  }
+  
 }

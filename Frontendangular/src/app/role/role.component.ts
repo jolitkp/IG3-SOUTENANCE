@@ -35,10 +35,20 @@ export class RoleComponent implements OnInit {
   }
  
    ngOnInit(){
-     this.role.getRole().subscribe(roles => {
-       console.log(roles);
-       this.roles = roles;
-     });
+    this.getRoleData();
+
+    }
+
+    getRoleData(): void {
+      this.role.getRole().subscribe(
+        (roleData) => {
+          console.log(roleData);
+          this.roles = roleData; // Mettre à jour la liste des rôles avec les données récupérées
+        },
+        (error) => {
+          console.error('Erreur lors de la récupération des rôles', error);
+        }
+      );
     }
            
   detailRole(roleId: number): void{

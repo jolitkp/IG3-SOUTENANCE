@@ -1,0 +1,20 @@
+.actions{
+    width: 100px;
+}
+.add-button{
+    float:right;
+    margin-bottom: 10px;
+}
+.add-container{
+    align-items: center;
+}
+.add-icon{
+font-size: 16px;
+margin-right: 5px;
+}
+.add-text{
+    font-size: 16px;
+}
+.btn-yellow {
+    background-color: yellow;
+  }

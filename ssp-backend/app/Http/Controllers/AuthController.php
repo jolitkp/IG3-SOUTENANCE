@@ -103,6 +103,16 @@ class AuthController extends Controller
         return response()->json(['message'=>'Utilisateur bloqué avec succès']);
     }
 
+    public function unblockUser($id)
+{
+    $user = User::findOrFail($id);
+    $user->blocked_at = null;
+    $user->save();
+
+    return response()->json(['message' => 'Utilisateur débloqué avec succès']);
+}
+
+
 
     public function deleteUser(Request $request,$id){
         $user = User::find($id);
@@ -130,8 +140,18 @@ class AuthController extends Controller
 
     //liste des utilisateurs
     public function getUser() {
-        return response()->json(User::all(),200);
+        $users = User::with('roles')->get();
+
+        return response()->json($users, 200);    }
+
+    public function getUserRole($id)
+    {
+        $user = User::findOrFail($id);
+        $role = $user->roles()->first(); // Supposant que tu utilises la relation "roles" dans ton modèle User
+
+        return response()->json($role);
     }
+
 //par id
     public function getUserbyId($id) {
         $user = User::find($id);
@@ -156,6 +176,8 @@ class AuthController extends Controller
         $user->update($request->all());
         return response($user,200);
     }
+
+
 
 }
 

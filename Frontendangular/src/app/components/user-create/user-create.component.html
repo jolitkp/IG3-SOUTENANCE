@@ -1,4 +1,4 @@
-
+<!-- 
 <p>
     <button class="ant-btn-green" nz-button nzType="default" (click)="goBack()">
         <i nz-icon nzType="arrow-left"></i>Retour
@@ -13,9 +13,9 @@
               
               <div class="form-group">
                 <label for="inputName3" class="col-sm-2 col-form-label">Nom</label>
-                
+                <div class="col-sm-10"></div>
                   <input type="text" name="nom" class="form-control" id="inputname3"  required>
-                
+                </div>
               </div>
 
               <div class="row mb-3">
@@ -54,4 +54,58 @@
                   </div>
               </form>
         </div>
-    </div>
+    </div> -->
+    <p>
+      <button class="ant-btn-green" nz-button nzType="default" (click)="goBack()">
+          <i nz-icon nzType="arrow-left"></i>Retour
+      </button>
+  </p>
+
+    <nz-card  nzTitle="Création d'utilisateur">
+      <nz-form [formGroup]="userForm" (ngSubmit)="createUser()">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6" nzRequired>Nom</nz-form-label>
+          <nz-form-control [nzSpan]="14">
+            <input nz-input formControlName="nom" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6" nzRequired>Prénom</nz-form-label>
+          <nz-form-control [nzSpan]="14">
+            <input nz-input formControlName="prenom" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6" nzRequired>Email</nz-form-label>
+          <nz-form-control [nzSpan]="14">
+            <input nz-input formControlName="email" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6" nzRequired>Password</nz-form-label>
+          <nz-form-control [nzSpan]="14">
+            <input nz-input type="password" formControlName="password" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6" nzRequired>Confirm Password</nz-form-label>
+          <nz-form-control [nzSpan]="14">
+            <input nz-input type="password" formControlName="confirmPassword" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6" nzRequired>Role</nz-form-label>
+          <nz-form-control [nzSpan]="14">
+            <nz-select formControlName="role">
+              <nz-option *ngFor="let role of roles" [nzLabel]="role.name" [nzValue]="role.name"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control [nzSpan]="14" [nzOffset]="6">
+            <button nz-button nzType="primary" [disabled]="userForm.invalid" (click)="createUser()" >Ajouter</button>
+          </nz-form-control>
+        </nz-form-item>
+      </nz-form>
+    </nz-card>
+    

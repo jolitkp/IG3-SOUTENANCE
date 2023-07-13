@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use App\Models\User;
+
 
 class RoleController extends Controller
 {
@@ -99,6 +101,17 @@ class RoleController extends Controller
         return response()->json(Role::find($id),200);
     }
 
+    public function getRoleNameById($roleId)
+{
+    $role = Role::find($roleId);
+
+    if (!$role) {
+        return response()->json(['message' => 'Role not found'], 404);
+    }
+
+    return response()->json(['name' => $role->name]);
+}
+
     public function updateRole(Request $request, $id) {
         $role = Role::find($id);
         if(is_null($role)){
@@ -106,5 +119,28 @@ class RoleController extends Controller
         }
         $role->update($request->all());
         return response($role,200);
+    }
+
+    public function assignRole(Request $request)
+    {
+        // dd($request->all());
+        $userId = $request->input('userId');
+        $roleId = (int)$request->input('roleId');
+    
+        $user = User::find($userId);
+    
+        if (!$user) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+    
+        $role = Role::where('id', '>=', $roleId)->first();
+    
+        if (!$role) {
+            return response()->json(['message' => 'Role not found'], 404);
+        }
+    
+        $user->syncRoles([$role->id]);
+    
+        return response()->json(['message' => 'Role assigned successfully']);
     }
 }
