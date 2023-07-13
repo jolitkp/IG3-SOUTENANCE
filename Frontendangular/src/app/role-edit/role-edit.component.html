@@ -22,7 +22,7 @@
         <label class="form-label">Permissions :</label>
         <div *ngFor="let permission of permissions">
             <div class="form-check">
-                <input type="checkbox" class="form-check-input" [formControlName]="'selectedPermissions'" [value]="permission" [checked]="isChecked(permission)" />
+                <input type="checkbox" class="form-check-input" [formControlName]="'selectedPermissions'" [value]="permission"  />
                 <label class="form-check-label">{{ permission }}</label>
             </div>
         </div>

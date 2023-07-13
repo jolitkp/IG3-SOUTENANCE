@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RoleService } from '../services/role.service';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
+import { FormArray, FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Role } from '../role';
-// import { Role } from '../role';
 
 @Component({
   selector: 'app-role-edit',
@@ -17,68 +17,110 @@ formErrors: any;
 errorMessage: string='';
 RoleForm!: FormGroup;
 permissions: string[]=[];
+permission: string[]=[];
+selectedPermissions: any[]=[];
 roleName!: string;
-rolle: Role = new Role();
+rolle!: Role;
 roles: any[] = [];
+allPermissions: string[] = [];
 
 
-  constructor( private router: Router ,private route: ActivatedRoute, private role: RoleService, private formBuilder: FormBuilder){}
+  constructor( private auth: AuthService ,private router: Router ,private route: ActivatedRoute, private role: RoleService, private formBuilder: FormBuilder){}
 
   ngOnInit(): void {
-    // console.log(this.route.snapshot.params['id']);
+
+    console.log("Length of allPermissions:", this.allPermissions.length);
+    console.log("Length of selectedPermissions:", this.selectedPermissions.length);
+
     this.id = this.route.snapshot.params['id'];
     this.initRoleForm();
+    this.getAllPermissions();
     this.getData();
     
   }
+//récupérer toutes les permissions 
+  getAllPermissions(): void {
+    this.auth.getUserInfo().subscribe(
+      (permissions: string[]) => {
+        console.log("Permissions received:", permissions);
+        this.allPermissions = permissions;
+        console.log("Length of selectedPermissions after mapping:", this.allPermissions);
+        this.selectedPermissions = this.allPermissions.map(permission => new FormControl(false));
+        console.log("Length of selectedPermissions after mapping:", this.selectedPermissions.length);
+      },
+      (error: any) => {
+        console.error('Erreur lors de la récupération des permissions', error);
+      }
+    );
+  }
 
-
+// initialiser le formulaire 
   initRoleForm(): void {
     this.RoleForm = this.formBuilder.group({
       roleName: ['', Validators.required],
-      selectedPermissions: [[]]
+      selectedPermissions: this.formBuilder.array(
+        this.selectedPermissions.map(() => new FormControl(false))
+      ) // Créez un FormArray vide pour les permissions sélectionnées
     });
   }
 
-  isChecked(permission: string): boolean {
-    return this.rolle.permissions.includes(permission)  }
+  // isChecked(permission: string): boolean {
+  //   return this.rolle.permissions.includes(permission)  }
   
-
+//récupére et met à jour le formulaire par id sélectionné
   getData():void {
     this.role.getRolebyId(this.id).subscribe(
       (roleData) => {
         const data = roleData as Role
-        // console.log(data);
         this.rolle = data;
-
-          // this.roleName = res.roleName;
-          // this.permissions = res.permissions;
+        console.log("Role data received:", data);
 
           this.RoleForm.patchValue({
-            roleName: this.rolle.roleName,
-            selectedPermissions: this.rolle.permissions
-      // this.RoleForm.controls['roleName'].setValue(this.rolle.roleName);
-      // this.RoleForm.controls['selectedPermissions'].setValue(this.rolle.permissions);
+            roleName: data.roleName,
+            //selectedPermissions: data.permissions
       });
-      this.permissions = this.rolle.permissions;
+      this.permissions =data.permissions;
+      console.log("Length of permissions:", this.permissions.length);
+      this.setCheckboxState();
   },
   (error: any) => {
     console.error('Erreur lors de la récupération des données du rôle', error);
   }
 );
 }
-
+//défini l'etat des cases à cocher
+setCheckboxState(): void {
+  const assignedPermissions = this.rolle?.permissions || [];
+  console.log("Assigned permissions:", assignedPermissions);
+  if (this.selectedPermissions) {
+  this.selectedPermissions.forEach((formControl: FormControl, index: number) => {
+    const permission = this.allPermissions[index];
+    console.log("Permissions:", permission);
+    if (assignedPermissions.includes(permission)) {
+      formControl.setValue(true);
+    } else {
+      formControl.setValue(false);
+    }  
+  });
+}
+}
+//mis à jour
 updateRole(): void {
+  console.log("Selected permissions:", this.selectedPermissions);
   if (this.RoleForm.valid) {
-    const updatedRole: Role = {
+    const selectPermissions = this.selectedPermissions
+    .map((formControl: FormControl, index: number) => (formControl.value ? this.allPermissions[index] : null))
+    .filter((permission: string | null) => permission !== null);
+
+      const updatedRole: Role = {
       id: this.id,
       roleName: this.RoleForm.value.roleName,
-      permissions: this.RoleForm.value.selectedPermissions,
-      createdAt: this.rolle.createdAt,
-      updatedAt: new Date()
+      permissions:selectPermissions,
+       createdAt: this.rolle.createdAt,
+       updatedAt: new Date()
 
     };
-    console.log(this.id);
+    console.log(updatedRole);
 
     this.role.updateRole(updatedRole).subscribe(
       () => {
@@ -97,8 +139,9 @@ updateRole(): void {
   };
 
   }
-
+//récupère les données
   getRoleData(): void {
+    console.log("Fetching role data...");
     this.role.getRoles().subscribe(
       (roleData: Role[]) => {
         console.log(roleData);
@@ -118,3 +161,4 @@ updateRole(): void {
 
   };
 }
+

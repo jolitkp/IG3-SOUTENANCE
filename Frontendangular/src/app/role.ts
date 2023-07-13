@@ -1,7 +1,7 @@
 export class Role {
   id: number = 0;
   // name: string ='';
-  permissions: string[]=[];
+  permissions: any[]=[];
   createdAt: Date = new Date();
   updatedAt: Date = new Date();
   // allPermissions: string[]=[];
