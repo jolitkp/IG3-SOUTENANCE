@@ -1,8 +1,10 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Projet } from 'src/app/projet';
 import { ProjetService } from 'src/app/services/projet.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzFormItemComponent, NzFormControlComponent } from 'ng-zorro-antd/form';
 
 @Component({
   selector: 'app-formulaire',
@@ -34,7 +36,8 @@ export class FormulaireComponent {
       dateFin: [''],
       objectif: ['', [Validators.required]],
       membres: [''],
-      definitionRisques: ['']
+      definitionRisques: [''],
+      dateRange: [null, [Validators.required]]
     });
 
     this.numeroProjet = 0;
@@ -81,6 +84,7 @@ export class FormulaireComponent {
 
   submitForm(): void {
     if (this.validateForm.valid) {
+      console.log('Formulaire valide, enregistrement en cours...');
       this.enregistrerProjet();
     } else {
       console.log('Formulaire invalide, veuillez vérifier les champs');

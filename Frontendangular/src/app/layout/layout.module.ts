@@ -73,6 +73,7 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { EllipsisOutline } from '@ant-design/icons-angular/icons';
 import { ProjetCreationComponent } from '../projet-creation/projet-creation.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -81,6 +82,8 @@ import { ProjetCreationComponent } from '../projet-creation/projet-creation.comp
     ProjetCreationComponent,
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     NzLayoutModule,
     NzBreadCrumbModule,
@@ -158,7 +161,6 @@ import { ProjetCreationComponent } from '../projet-creation/projet-creation.comp
     NzStatisticModule,
     NzCardModule,
     NzSpaceModule,
-    NzGridModule,
     NzButtonModule,
   ]
 })
