@@ -116,8 +116,8 @@ updateRole(): void {
       id: this.id,
       roleName: this.RoleForm.value.roleName,
       permissions:selectPermissions,
-       createdAt: this.rolle.createdAt,
-       updatedAt: new Date()
+      // createdAt: this.rolle.createdAt,
+      // updatedAt: new Date()
 
     };
     console.log(updatedRole);
