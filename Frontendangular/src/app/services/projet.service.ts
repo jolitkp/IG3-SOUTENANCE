@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Projet } from 'src/app/projet'; 
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -11,8 +12,8 @@ export class ProjetService {
 
   constructor(private http: HttpClient) { }
 
-  getAllProjets() {
-    return this.http.get<Projet[]>(this.baseUrl); // Spécifiez le type générique Projet[]
+  getAllProjets(): Observable<any> {
+    return this.http.get<any[]>('http://127.0.0.1:8000/api/projets'); // Spécifiez le type générique Projet[]
   }
 
   getProjetById(id: number) {

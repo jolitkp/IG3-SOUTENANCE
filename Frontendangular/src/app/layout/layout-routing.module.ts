@@ -11,6 +11,7 @@ import { RoleCreateComponent } from '../role-create/role-create.component';
 import { RoleEditComponent } from '../role-edit/role-edit.component';
 import { ProjetCreationComponent} from'../projet-creation/projet-creation.component';
 import { FormulaireComponent } from '../formulaire/formulaire.component';
+import { CreationProjetComponent } from '../creation-projet/creation-projet.component';
 const routes: Routes = [
   {
   
@@ -18,16 +19,16 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: 'welcome', component: WelcomeComponent },
-      { path: 'ajouter', component: FormulaireComponent },
+      { path: 'formulaire', component: FormulaireComponent },
 
       {
         path: 'role',
         component: RoleComponent
       },
-      // {
-      // path: 'formulaire',
-      // component: FormulaireComponent
-      // },
+      {
+      path: 'creation-projet',
+      component: CreationProjetComponent
+      },
       {
         path: 'projet-creation',
         component: ProjetCreationComponent

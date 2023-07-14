@@ -38,7 +38,7 @@ allPermissions: string[] = [];
     this.getData();
     
   }
-//récupérer toutes les permissions 
+//récupérer toutes les permissions et initialise une liste de cases à cocher
   getAllPermissions(): void {
     this.auth.getUserInfo().subscribe(
       (permissions: string[]) => {
@@ -59,7 +59,7 @@ allPermissions: string[] = [];
     this.RoleForm = this.formBuilder.group({
       roleName: ['', Validators.required],
       selectedPermissions: this.formBuilder.array(
-        this.selectedPermissions.map(() => new FormControl(false))
+        this.allPermissions.map(() => new FormControl(false))
       ) // Créez un FormArray vide pour les permissions sélectionnées
     });
   }
@@ -69,9 +69,14 @@ allPermissions: string[] = [];
   
 //récupére et met à jour le formulaire par id sélectionné
   getData():void {
+    console.log("ID:", this.id);
     this.role.getRolebyId(this.id).subscribe(
       (roleData) => {
         const data = roleData as Role
+        if (!data) {
+          console.error('Erreur: données de rôle non disponibles');
+          return;
+        }
         this.rolle = data;
         console.log("Role data received:", data);
 
@@ -79,7 +84,7 @@ allPermissions: string[] = [];
             roleName: data.roleName,
             //selectedPermissions: data.permissions
       });
-      this.permissions =data.permissions;
+      this.permissions = data.permissions;
       console.log("Length of permissions:", this.permissions.length);
       this.setCheckboxState();
   },
@@ -88,9 +93,10 @@ allPermissions: string[] = [];
   }
 );
 }
-//défini l'etat des cases à cocher
+
+//défini l'etat des cases à cocher en fonction des permissios attribués 
 setCheckboxState(): void {
-  const assignedPermissions = this.rolle?.permissions || [];
+  const assignedPermissions = this.rolle?.permissions;
   console.log("Assigned permissions:", assignedPermissions);
   if (this.selectedPermissions) {
   this.selectedPermissions.forEach((formControl: FormControl, index: number) => {

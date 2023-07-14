@@ -31,11 +31,10 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { CreationProjetComponent } from './creation-projet/creation-projet.component';
-import { MainModule } from './main/main.module';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
-import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzCardModule } from 'ng-zorro-antd/card';
@@ -79,7 +78,7 @@ registerLocaleData(en);
     NzTableModule,
     NzIconModule,
     NzDropDownModule,
-    NzPopoverModule,
+    NzDatePickerModule,
     NzSelectModule,
     NzCardModule
   ],

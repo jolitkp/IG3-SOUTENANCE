@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class ProjetController extends Controller
 {
-    public function index()
+    public function projet()
     {
         $projets = Projet::all();
 

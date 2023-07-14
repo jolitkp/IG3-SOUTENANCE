@@ -1,9 +1,5 @@
-<nz-row>
-    <nz-col nzSpan="24">
-      <button nz-button nzType="primary" (click)="ajouterProjet()" (click)="ouvrirFormulaire()" nzShape="round" nzSize="large" class="add-button">Ajouter un nouveau projet</button>
-    </nz-col>
-  </nz-row>
 
+<!--
 <nz-table [nzData]="projets">
     <thead>
       <tr>
@@ -19,4 +15,40 @@
         <td>{{ projet.action }}</td>
       </tr>
     </tbody>
+  </nz-table> -->
+
+
+
+  <nz-row>
+    <nz-col nzSpan="24">
+      <button nz-button nzType="primary" (click)="showCreatePage()" nzShape="round" nzSize="large" class="add-button">Ajouter un projet</button>
+    </nz-col>
+  </nz-row>
+  
+<nz-table nz-table #projetsTable [nzData] ="projets" [nzPageSize] ="50" nzBordered nzSize ="small">
+    <thead>
+      <tr>
+        <th>N°</th>
+        <th>Nom</th>
+        <th>Action</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let projet of projetsTable.data">
+        <td>{{ projet.id }}</td>
+        <td>{{ projet.nom }}</td>
+        <td>
+              <a nz-dropdown nzPlacement="bottomRight">
+                <i nz-icon nzType="menu" nzTheme="outline" nz-dropdown [nzDropdownMenu]="menu"></i>
+              </a>
+              <nz-dropdown-menu #menu="nzDropdownMenu">
+              <ul nz-menu nzSelectable>
+                <li nz-menu-item (click)="Gererprojet()">Gérer un projet</li>
+              </ul>
+            </nz-dropdown-menu>
+           </td>
+      </tr>
+    </tbody>
   </nz-table>
+

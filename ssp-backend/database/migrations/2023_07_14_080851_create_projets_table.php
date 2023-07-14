@@ -15,19 +15,21 @@ return new class extends Migration
     {
         Schema::create('projets', function (Blueprint $table) {
             $table->id();
-            $table->integer('numero');
             $table->string('nom');
             $table->string('delai');
-            $table->decimal('budgetAlloue', 8, 2);
-            $table->decimal('budgetDepense', 8, 2);
-            $table->date('dateDebut');
-            $table->date('dateFin');
-            $table->string('objectif');
-            $table->string('jourCompteRendu');
-            $table->string('membres');
-            $table->string('definitionRisques');
-            $table->string('action');
+            $table->date('datedebut');
+            $table->date('datefin');
+            $table->integer('budget');
+            $table->text('objectif');
+            $table->string('membre');
+            $table->text('risques');
             $table->timestamps();
+
+
+
+            // $table->foreignId('tache_id')->constrained();
+            // $table->foreignId('compte_rendu_id')->constrained();
+            // $table->foreignId('fichier_id')->constrained();
         });
     }
 

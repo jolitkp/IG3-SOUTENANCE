@@ -7,20 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Projet extends Model
 {
+    use HasFactory;
+
     protected $table = 'projets';
+
     protected $fillable = [
-        'numero',
         'nom',
         'delai',
-        'budgetAlloue',
-        'budgetDepense',
-        'dateDebut',
-        'dateFin',
+        'datedebut',
+        'datefin',
+        'budget',
         'objectif',
-        'jourCompteRendu',
         'membres',
-        'definitionRisques',
-        'action',
+        'risques',
     ];
-    use HasFactory;
+    
 }
