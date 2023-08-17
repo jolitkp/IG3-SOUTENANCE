@@ -57,8 +57,11 @@ Route::get("role/{roleId}/name",[RoleController::class,"getRoleNameById"]);
 Route::post("assignerole",[RoleController::class,"assignRole"]);
 
 
-Route::get('/projets', [ProjetController::class, 'projet']);
+Route::get('projets', [ProjetController::class, 'projet']);
 Route::get('/projets/{projet}', [ProjetController::class, 'show']);
-Route::post('/projets', [ProjetController::class, 'store']);
+Route::get('projet/{id}', [ProjetController::class, 'getProjetbyId']);
+Route::get('projet/{id}/taches', [ProjetController::class, 'getProjetWithTaches']);
+Route::post('addProjet', [ProjetController::class, "store"]);
 Route::put('/projets/{projet}', [ProjetController::class, 'update']);
-Route::delete('/projets/{projet}', [ProjetController::class, 'destroy']);
+Route::delete('deleteTache/{id}', [ProjetController::class, 'deleteTache']);
+Route::post("projets/{projetId}/taches",[ProjetController::class,"create"]);

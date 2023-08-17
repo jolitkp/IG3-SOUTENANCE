@@ -74,7 +74,6 @@ export class RoleComponent implements OnInit {
            this.isModalVisible = false;
          }
          
-           editRole(){};
            deleteRole(id: any){
               this.modal.confirm({
                 nzTitle: 'Êtes-vous sûr de vouloir supprimer ce rôle?',

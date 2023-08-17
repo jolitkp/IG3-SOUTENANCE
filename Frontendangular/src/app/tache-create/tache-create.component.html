@@ -1,0 +1,49 @@
+
+
+   <!-- projet-details.component.html -->
+   <p>
+    <button class="ant-btn-green" nz-button nzType="default" (click)="goBack()">
+        <i nz-icon nzType="arrow-left"></i>Retour
+    </button>
+</p>
+<!-- ... Autres contenus du composant ... -->
+<nz-card  nzTitle="Création d'une tache">
+
+<div class="tache-form-container">
+
+    <form [formGroup]="tacheForm" (ngSubmit)="creerTache()">
+      <nz-form-item>
+        <nz-form-label for="titre">Titre de la tâche</nz-form-label>
+        <nz-form-control>
+          <input nz-input formControlName="titre" id="titre" required>
+        </nz-form-control>
+      </nz-form-item>
+  
+      <nz-form-item>
+        <nz-form-label for="description">Description</nz-form-label>
+        <nz-form-control>
+          <textarea nz-input formControlName="description" id="description" required></textarea>
+        </nz-form-control>
+      </nz-form-item>
+  
+      <nz-form-item>
+        <nz-form-label for="statut">Statut</nz-form-label>
+        <nz-form-control>
+          <nz-select formControlName="statut" id="statut" required (ngModelChange)="updateStatut($event)">
+            <nz-option nzValue="traite" nzLabel="Traité"></nz-option>
+            <nz-option nzValue="en_cours" nzLabel="En cours" ></nz-option>
+            <nz-option nzValue="non_traite" nzLabel="Non_traité"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+  
+      <nz-form-item>
+        <nz-form-control>
+          <button nz-button nzType="primary" type="submit" [disabled]="tacheForm.invalid" (click)="creerTache()">Créer la tâche</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+</nz-card> 
+  <!-- ... Autres contenus du composant ... -->
+  

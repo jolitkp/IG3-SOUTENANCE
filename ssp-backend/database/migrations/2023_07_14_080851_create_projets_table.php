@@ -17,11 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('nom');
             $table->string('delai');
-            $table->date('datedebut');
-            $table->date('datefin');
+            $table->datetime('datedebut');
+            $table->datetime('datefin');
             $table->integer('budget');
             $table->text('objectif');
-            $table->string('membre');
+            $table->string('membre')->default('')->nullable();
             $table->text('risques');
             $table->timestamps();
 

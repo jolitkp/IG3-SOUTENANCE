@@ -30,7 +30,7 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
-import { CreationProjetComponent } from './creation-projet/creation-projet.component';
+import { ProjetDetailsComponent } from './projet-details/projet-details.component';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
@@ -39,11 +39,13 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { FormulaireComponent} from './formulaire/formulaire.component';
+import { TacheCreateComponent } from './tache-create/tache-create.component';
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
     FormulaireComponent,
+    TacheCreateComponent,
     AppComponent,
     NavbarComponent,
     ForgotPasswordComponent,
@@ -56,7 +58,7 @@ registerLocaleData(en);
     SignupComponent,
     ProfilComponent,
     RequestResetComponent,
-    CreationProjetComponent,
+    ProjetDetailsComponent,
     ResponseResetComponent
   ],
   imports: [

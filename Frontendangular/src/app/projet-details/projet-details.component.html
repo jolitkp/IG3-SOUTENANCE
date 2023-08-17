@@ -1,0 +1,59 @@
+
+  <div>
+    <button class="btn btn-primary" (click)="goBack()">
+        <i class="bi bi-arrow-left"></i> Retour
+    </button>
+</div>
+  <div *ngIf="projet" class="project-details">
+    <h2 class="project-name">{{ projet.nom }}</h2><br>
+    <p><strong>Délai:</strong> {{ projet.delai }}</p><br>
+    <p><strong>Date de Début:</strong> {{ projet.datedebut }}</p><br>
+    <p><strong>Date de Fin:</strong> {{ projet.datefin }}</p><br>
+    <p><strong>Budget:</strong> {{ projet.budget }}</p><br>
+    <p><strong>Objectif:</strong> {{ projet.objectif }}</p><br>
+    <p><strong>Membres:</strong> {{ projet.membre }}</p><br>
+    <p><strong>Risques:</strong> {{ projet.risques }}</p><br>
+    <p><strong>Taches du projet:</strong></p><br>
+
+
+    <nz-row>
+      <nz-col nzSpan="24">
+        <button nz-button nzType="primary" (click)="showCreatePage()" nzShape="round" nzSize="large" class="add-button">Ajouter une tache</button>
+      </nz-col>
+    </nz-row>
+
+  <nz-table #tachesTable [nzData] ="taches" [nzPageSize] ="10" nzBordered nzSize ="small">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Titre</th>
+        <th>Description</th>
+        <th>Statut</th>
+        <th class="actions">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tache of tachesTable.data">
+        <td>{{ tache.id }}</td>
+        <td>{{ tache.titre }}</td>
+        <td>{{ tache.description }}</td>
+        <td>{{ tache.statut}}</td>
+
+        <td>
+          <!-- <nz-dropdown-menu nzPlacement="bottomCenter" nzTrigger ="click"> -->
+            <a nz-dropdown nzPlacement="bottomRight">
+              <i nz-icon nzType="menu" nzTheme="outline" nz-dropdown [nzDropdownMenu]="menu"></i>
+            </a>
+            <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu nzSelectable>
+              <li nz-menu-item  >Modifier</li>
+              <li nz-menu-item (click)="supprimerTache(tache.id)">Supprimer</li>
+            </ul>
+          </nz-dropdown-menu>
+         </td>
+        </tr>
+    </tbody>
+  </nz-table>
+
+</div>
+  

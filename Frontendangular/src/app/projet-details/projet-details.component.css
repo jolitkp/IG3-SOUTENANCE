@@ -1,0 +1,62 @@
+/* styles.css (ou dans votre fichier de styles)
+
+.project-details {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .project-title {
+    color: #007bff;
+    margin-bottom: 10px;
+  }
+  
+  .project-info {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  .project-info p {
+    margin: 5px 0;
+  }
+  
+  .project-info strong {
+    font-weight: bold;
+  }
+   */
+
+   /* styles.css (ou styles.scss si vous utilisez SCSS) */
+
+/* Style du conteneur principal */
+.project-details {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+  }
+  
+  /* Style du nom du projet */
+  .project-name {
+    font-size: 24px;
+    color: #1890ff;
+    margin-bottom: 10px;
+  }
+  
+  /* Style des paragraphes */
+  .project-details p {
+    margin-bottom: 8px;
+  }
+  
+  /* Style du texte en gras */
+  .project-details strong {
+    font-weight: bold;
+  }
+
+  .add-button {
+    float: right;
+    margin-top: 16px;
+    margin-right: 16px;
+  }
+  

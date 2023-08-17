@@ -20,12 +20,11 @@ export class FormulaireComponent {
     this.projectForm = this.formBuilder.group({
       nom: ['', Validators.required],
       delai: ['', Validators.required],
-      datedebut: [null, Validators.required],
+      datedebut: [new Date(), Validators.required],
       datefin: [null, Validators.required],
       budget: [null, Validators.required],
       objectif: ['', Validators.required],
       membre: ['', Validators.required],
-      jourcompterendu: [null, Validators.required],
       risques: ['']
     });
   }
@@ -35,8 +34,30 @@ export class FormulaireComponent {
       return;
     }
 
-    // Envoyez les données du formulaire au serveur ou effectuez d'autres actions
+   // Convertir les dates au format ISO 8601 avant de les envoyer au backend
+   const dateDebutFormatted = this.projectForm.value.datedebut.toISOString().slice(0, 19).replace('T', ' ');;
+   const dateFinFormatted  = this.projectForm.value.datefin.toISOString().slice(0, 19).replace('T', ' ');;
+  const projet = { ...this.projectForm.value, datedebut: dateDebutFormatted, datefin: dateFinFormatted };
+
     console.log(this.projectForm.value);
+
+    // const projet = this.projectForm.value;
+
+    this.projetService.addProjet(projet).subscribe(
+      (response: any)=> {
+        console.log('Projet ajouté avec succès', response)
+        this.router.navigate(['/projet-creation']);
+
+      },
+      (error: any)=> {
+        console.error('Erreur lors de l\'ajout du projet:', error)
+      }
+    )
+
+  }
+
+  goBack(){
+    this.router.navigate(['/projet-creation']);
   }
 }
 

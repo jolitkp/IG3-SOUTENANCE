@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('taches', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('projet_id')->constrained()->onDelete('cascade');
+            $table->string('titre', 255);
+            $table->text('description');
+            $table->string('statut', 50);
             $table->timestamps();
         });
     }

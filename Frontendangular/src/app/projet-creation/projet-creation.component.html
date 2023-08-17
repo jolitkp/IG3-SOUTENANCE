@@ -44,7 +44,7 @@
               </a>
               <nz-dropdown-menu #menu="nzDropdownMenu">
               <ul nz-menu nzSelectable>
-                <li nz-menu-item (click)="Gererprojet()">Gérer un projet</li>
+                <li nz-menu-item [routerLink]="'/projet/' + projet.id">Gérer un projet</li>
               </ul>
             </nz-dropdown-menu>
            </td>

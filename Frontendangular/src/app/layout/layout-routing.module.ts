@@ -11,7 +11,8 @@ import { RoleCreateComponent } from '../role-create/role-create.component';
 import { RoleEditComponent } from '../role-edit/role-edit.component';
 import { ProjetCreationComponent} from'../projet-creation/projet-creation.component';
 import { FormulaireComponent } from '../formulaire/formulaire.component';
-import { CreationProjetComponent } from '../creation-projet/creation-projet.component';
+import { ProjetDetailsComponent } from '../projet-details/projet-details.component'
+import { TacheCreateComponent } from '../tache-create/tache-create.component';
 const routes: Routes = [
   {
   
@@ -26,13 +27,18 @@ const routes: Routes = [
         component: RoleComponent
       },
       {
-      path: 'creation-projet',
-      component: CreationProjetComponent
+      path: 'projet/:id',
+      component: ProjetDetailsComponent
       },
       {
         path: 'projet-creation',
         component: ProjetCreationComponent
       },
+      {
+        path: 'tache-create/:projetId',
+        component: TacheCreateComponent
+      },
+      
       {
         path: 'profil',
         component: ProfilComponent

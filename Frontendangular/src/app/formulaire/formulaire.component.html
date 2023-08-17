@@ -1,55 +1,11 @@
-<!-- <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
-  <nz-form-item>
-    <nz-form-label >Nom du projet</nz-form-label>
-    <nz-form-control > 
-      <input nz-input formControlName="nomProjet" placeholder="Entrez le nom du projet" />
-    </nz-form-control>       
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-label >Délai</nz-form-label>
-    <nz-form-control >
-      <input nz-input formControlName="delai" placeholder="Entrez le délai" />
-    </nz-form-control> 
-  </nz-form-item>
-  <div class="d-flex justify-content-between" style="margin-bottom: 16px;">
-    <nz-form-item>
-      <nz-form-label >Budget </nz-form-label>
-      <nz-form-control >
-        <input nz-input formControlName="budgetAlloue" placeholder="Entrez le budget alloué" />
-      </nz-form-control>
-    </nz-form-item>
-  </div>  
-  <nz-form-item>
-    <nz-form-label  nzRequired>Objectif</nz-form-label>
-    <nz-form-control >
-      <input nz-input formControlName="objectif" placeholder="Entrez l'objectif du projet" />
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-label >Membres</nz-form-label>
-    <nz-form-control >
-      <input nz-input formControlName="membres" placeholder="Entrez les membres du projet" />
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-label >Risques</nz-form-label>
-    <nz-form-control>
-      <textarea nz-input formControlName="definitionRisques" placeholder="Entrez la définition des risques"></textarea>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-control >
-      <div class="d-flex justify-content-between">
-        <nz-form-item>
-          <button nz-button nzType="primary" class="btn-primary rounded" type="submit">Enrégistrer</button>
-        </nz-form-item>
-      </div>
-    </nz-form-control>
-  </nz-form-item>
-</form> -->
 
+<p>
+  <button class="ant-btn-green" nz-button nzType="default" (click)="goBack()">
+      <i nz-icon nzType="arrow-left"></i>Retour
+  </button>
+</p>
 
-
+<nz-card  nzTitle="Création d'un projet">
 <Form nz-form [formGroup]="projectForm" (ngSubmit)="submitForm()">
   <nz-form-item>
     <nz-form-label [nzSpan]="6" nzRequired>Nom :</nz-form-label>
@@ -65,24 +21,18 @@
   </nz-form-item>
   <nz-form-item>
     <nz-form-label [nzSpan]="6" nzRequired>Date de début :</nz-form-label>
-    <nz-form-control [nzSpan]="14" nzHasFeedback nzErrorTip="La date de début est obligatoire">
-      <nz-date-picker formControlName="datedebut"></nz-date-picker>
+    <nz-form-control [nzSpan]="20" nzHasFeedback nzErrorTip="La date de début est obligatoire">
+      <nz-date-picker nzSize="large" formControlName="datedebut"></nz-date-picker>
+    </nz-form-control>
+  <!-- </nz-form-item>
+  <nz-form-item> -->
+    <nz-form-label [nzSpan]="4" nzRequired>Date de fin :</nz-form-label>
+    <nz-form-control [nzSpan]="10" nzHasFeedback nzErrorTip="La date de fin est obligatoire">
+      <nz-date-picker nzSize="large" formControlName="datefin"></nz-date-picker>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
-    <nz-form-label [nzSpan]="6" nzRequired>Date de fin :</nz-form-label>
-    <nz-form-control [nzSpan]="14" nzHasFeedback nzErrorTip="La date de fin est obligatoire">
-      <nz-date-picker formControlName="datefin"></nz-date-picker>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-label [nzSpan]="6" nzRequired>Budget alloué :</nz-form-label>
-    <nz-form-control [nzSpan]="14" nzHasFeedback nzErrorTip="Le budget est obligatoire">
-      <input nz-input formControlName="budget" />
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-label [nzSpan]="6" nzRequired>Budget dépensé :</nz-form-label>
+    <nz-form-label [nzSpan]="6" nzRequired>Budget :</nz-form-label>
     <nz-form-control [nzSpan]="14" nzHasFeedback nzErrorTip="Le budget est obligatoire">
       <input nz-input formControlName="budget" />
     </nz-form-control>
@@ -107,7 +57,97 @@
   </nz-form-item>
   <nz-row>
     <nz-form-control [nzSpan]="14" [nzOffset]="6">
-      <button nz-button nzType="primary" [disabled]="projectForm.invalid">Créer le projet</button>
+      <button nz-button nzType="primary" [disabled]="projectForm.invalid" (click)="submitForm()" >Créer le projet</button>
     </nz-form-control>
   </nz-row>
 </Form>
+</nz-card>
+
+
+<!-- <Form nz-form [formGroup]="projectForm" (ngSubmit)="submitForm()">
+  <nz-row>
+    <nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label nzRequired>Nom :</nz-form-label>
+        <nz-form-control nzHasFeedback nzErrorTip="Le nom est obligatoire">
+          <input nz-input formControlName="nom" />
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+    <nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label nzRequired>Délai :</nz-form-label>
+        <nz-form-control nzHasFeedback nzErrorTip="Le délai est obligatoire">
+          <input nz-input formControlName="delai" />
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+  </nz-row>
+  
+  <nz-row>
+    <nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label nzRequired>Date de début :</nz-form-label>
+        <nz-form-control nzHasFeedback nzErrorTip="La date de début est obligatoire">
+          <nz-date-picker formControlName="datedebut"></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+    <nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label nzRequired>Date de fin :</nz-form-label>
+        <nz-form-control nzHasFeedback nzErrorTip="La date de fin est obligatoire">
+          <nz-date-picker formControlName="datefin"></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+  </nz-row>
+  
+  <nz-row>
+    <nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label nzRequired>Budget :</nz-form-label>
+        <nz-form-control nzHasFeedback nzErrorTip="Le budget est obligatoire">
+          <input nz-input formControlName="budget" />
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+    <nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label nzRequired>Objectif :</nz-form-label>
+        <nz-form-control nzHasFeedback nzErrorTip="L'objectif est obligatoire">
+          <textarea nz-input formControlName="objectif"></textarea>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+  </nz-row>
+
+  <nz-row>
+    <nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label nzRequired>Membres :</nz-form-label>
+        <nz-form-control nzHasFeedback nzErrorTip="Le membre est obligatoire">
+          <textarea nz-input formControlName="membre"></textarea>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+    <nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label nzRequired>Risques :</nz-form-label>
+        <nz-form-control >
+          <textarea nz-input formControlName="risques"></textarea>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+  </nz-row>
+
+  <nz-row>
+    <nz-col nzSpan="24">
+      <nz-form-item>
+        <nz-form-control nzSpan="6" [nzOffset]="6">
+          <button nz-button nzType="primary" [disabled]="projectForm.invalid">Créer le projet</button>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+  </nz-row>
+</Form> -->

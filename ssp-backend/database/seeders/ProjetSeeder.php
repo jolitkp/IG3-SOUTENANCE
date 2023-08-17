@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Projet;
+use App\Models\Tache;
+
 
 class ProjetSeeder extends Seeder
 {
@@ -15,7 +17,7 @@ class ProjetSeeder extends Seeder
      */
     public function run()
     {
-        Projet::create([
+       $projet1= Projet::create([
             'nom' => 'Projet 1',
             'delai' => 'Delai du projet 1',
             'datedebut' => '2023-01-01',
@@ -28,7 +30,22 @@ class ProjetSeeder extends Seeder
             'risques' => 'Risques du projet 1',
         ]);
 
-        Projet::create([
+              // Créer des tâches associées au projet
+              $tache1 = new Tache([
+                'description' => 'Description de la tâche 1',
+                'titre' => 'Titre de la tâche 1',
+                'statut' => 'En cours',            
+            ]);
+            $projet1->taches()->save($tache1);
+    
+            $tache2 = new Tache([
+                'description' => 'Description de la tâche 2',
+                'titre' => 'Titre de la tâche 2',
+                'statut' => 'non_traité',           
+             ]);
+            $projet1->taches()->save($tache2);
+
+        $projet2= Projet::create([
             'nom' => 'Projet 2',
             'delai' => 'Delai du projet 2',
             'datedebut' => '2023-02-01',
@@ -40,5 +57,17 @@ class ProjetSeeder extends Seeder
                          NOIS Noir',
             'risques' => 'Risques du projet 2',
         ]);
+              // Créer des tâches associées au projet
+              $tache1 = new Tache([
+                'description' => 'Description de la tâche 1',
+                'titre' => 'Titre de la tâche 1',
+                'statut' => 'En cours',            ]);
+            $projet2->taches()->save($tache1);
+    
+            $tache2 = new Tache([
+                'description' => 'Description de la tâche 2',
+                'titre' => 'Titre de la tâche 2',
+                'statut' => 'traité',            ]);
+            $projet2->taches()->save($tache2);
     }
 }
